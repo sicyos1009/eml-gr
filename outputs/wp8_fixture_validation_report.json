@@ -1,0 +1,26 @@
+{
+  "bundle_hash_expected": "d399fed955d30c49",
+  "counts": {
+    "compiled_fail": 0,
+    "compiled_pass": 2,
+    "skipped": 0
+  },
+  "errors": [],
+  "real_external_runs_count": 0,
+  "record_count": 2,
+  "record_results": [
+    {
+      "errors": [],
+      "index": 0,
+      "ok": true,
+      "proof_target_id": "seed.rindler_cancel.coq.fixture"
+    },
+    {
+      "errors": [],
+      "index": 1,
+      "ok": true,
+      "proof_target_id": "seed.rindler_cancel.lean.fixture"
+    }
+  ],
+  "review_pass": true
+}

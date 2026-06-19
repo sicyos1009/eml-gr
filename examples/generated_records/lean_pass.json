@@ -1,0 +1,35 @@
+{
+  "artifact_package_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "command": {
+    "argv": [
+      "lean",
+      "proof_assistant/lean/EMLGRSeedExecutable.lean"
+    ],
+    "exit_code": 0
+  },
+  "proof_target_id": "seed.rindler_cancel.lean.fixture",
+  "provenance": {
+    "actor": null,
+    "commit_sha": "fixture-not-a-real-commit",
+    "kind": "local_fixture",
+    "real_external_run": false,
+    "ref_name": null,
+    "repository": null,
+    "run_attempt": null,
+    "run_id": null,
+    "run_url": null
+  },
+  "raw_log": {
+    "path": "examples/lean_fixture_pass.log",
+    "sha256": "47354683a26289d1a9f40dbed8b1c38585b3439ca850b4e697c44a3e8227de55"
+  },
+  "result_hash": "72b451340544939d",
+  "schema_version": "eml-gr-external-ci-result/1.0.0",
+  "skip_reason": null,
+  "status": "compiled_pass",
+  "target_source_sha256": "cb9b5c2b9c233ffb1668cc667f0543d311af91ee1183ebfdf1c932796b905441",
+  "tool": {
+    "name": "lean",
+    "version": "fixture-lean-4"
+  }
+}

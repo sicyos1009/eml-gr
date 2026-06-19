@@ -1,0 +1,87 @@
+{
+  "artifact_package_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "bundle_hash": "d399fed955d30c49",
+  "records": [
+    {
+      "artifact_package_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "command": {
+        "argv": [
+          "coqc",
+          "proof_assistant/coq/EMLGRSeedExecutable.v"
+        ],
+        "exit_code": 0
+      },
+      "proof_target_id": "seed.rindler_cancel.coq.fixture",
+      "provenance": {
+        "actor": null,
+        "commit_sha": "fixture-not-a-real-commit",
+        "kind": "local_fixture",
+        "real_external_run": false,
+        "ref_name": null,
+        "repository": null,
+        "run_attempt": null,
+        "run_id": null,
+        "run_url": null
+      },
+      "raw_log": {
+        "path": "examples/coq_fixture_pass.log",
+        "sha256": "1bb7068730622ecbf1ec8ce543b63d34b927c4ff6872f83134bc48adccbd2df9"
+      },
+      "result_hash": "6d2446227bb2b343",
+      "schema_version": "eml-gr-external-ci-result/1.0.0",
+      "skip_reason": null,
+      "status": "compiled_pass",
+      "target_source_sha256": "90f58218551f713c8b126cbca320522e88724e55937538fc7a5ba6d9058c8d6f",
+      "tool": {
+        "name": "coqc",
+        "version": "fixture-coq-8.20"
+      }
+    },
+    {
+      "artifact_package_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "command": {
+        "argv": [
+          "lean",
+          "proof_assistant/lean/EMLGRSeedExecutable.lean"
+        ],
+        "exit_code": 0
+      },
+      "proof_target_id": "seed.rindler_cancel.lean.fixture",
+      "provenance": {
+        "actor": null,
+        "commit_sha": "fixture-not-a-real-commit",
+        "kind": "local_fixture",
+        "real_external_run": false,
+        "ref_name": null,
+        "repository": null,
+        "run_attempt": null,
+        "run_id": null,
+        "run_url": null
+      },
+      "raw_log": {
+        "path": "examples/lean_fixture_pass.log",
+        "sha256": "47354683a26289d1a9f40dbed8b1c38585b3439ca850b4e697c44a3e8227de55"
+      },
+      "result_hash": "72b451340544939d",
+      "schema_version": "eml-gr-external-ci-result/1.0.0",
+      "skip_reason": null,
+      "status": "compiled_pass",
+      "target_source_sha256": "cb9b5c2b9c233ffb1668cc667f0543d311af91ee1183ebfdf1c932796b905441",
+      "tool": {
+        "name": "lean",
+        "version": "fixture-lean-4"
+      }
+    }
+  ],
+  "schema_version": "eml-gr-external-ci-result-bundle/1.0.0",
+  "summary": {
+    "counts": {
+      "compiled_fail": 0,
+      "compiled_pass": 2,
+      "skipped": 0
+    },
+    "fixture_or_simulated_runs_count": 2,
+    "real_external_runs_count": 0,
+    "record_count": 2
+  }
+}

@@ -1,0 +1,37 @@
+name: Release artifact audit
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  audit-release-template:
+    name: Audit release template and upload bundle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run local template audit
+        shell: bash
+        run: |
+          python scripts/review_v39_template.py
+      - name: Build release artifact zip
+        shell: bash
+        run: |
+          mkdir -p outputs
+          python scripts/package_release_artifact.py --root . --output outputs/eml_gr_v39_release_template.zip --sha-output outputs/eml_gr_v39_release_template.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-audit-bundle
+          path: |
+            outputs/v39_template_review_report.json
+            outputs/v39_template_review_output.txt
+            outputs/v39_tamper_report.json
+            outputs/v39_fixture_validation_report.json
+            outputs/eml_gr_v39_release_template.zip
+            outputs/eml_gr_v39_release_template.sha256
+            examples/external_ci_results.example.v1.json

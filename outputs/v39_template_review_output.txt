@@ -1,0 +1,81 @@
+{
+  "checks": {
+    "fixture_bundle_exists": true,
+    "fixture_bundle_no_real_external_runs": true,
+    "fixture_bundle_record_count_2": true,
+    "fixture_bundle_valid": true,
+    "fixture_simulation_rc0": true,
+    "honesty_note_present": true,
+    "package_sha_exists": true,
+    "package_zip_exists": true,
+    "required_files_exist": true,
+    "tamper_review_pass": true,
+    "workflow_emits_external_ci": true,
+    "workflow_has_lean_job": true,
+    "workflow_has_rocq_job": true,
+    "workflow_merges_results": true,
+    "workflow_uses_download_artifact_v4": true,
+    "workflow_uses_upload_artifact_v4": true,
+    "workflow_validates_results": true
+  },
+  "fixture_validation": {
+    "bundle_hash_expected": "d399fed955d30c49",
+    "counts": {
+      "compiled_fail": 0,
+      "compiled_pass": 2,
+      "skipped": 0
+    },
+    "errors": [],
+    "real_external_runs_count": 0,
+    "record_count": 2,
+    "record_results": [
+      {
+        "errors": [],
+        "index": 0,
+        "ok": true,
+        "proof_target_id": "seed.rindler_cancel.coq.fixture"
+      },
+      {
+        "errors": [],
+        "index": 1,
+        "ok": true,
+        "proof_target_id": "seed.rindler_cancel.lean.fixture"
+      }
+    ],
+    "review_pass": true
+  },
+  "review_pass": true,
+  "tamper_cases": [
+    {
+      "case": "baseline_should_pass",
+      "expected_pass": true,
+      "observed_pass": true,
+      "passed": true
+    },
+    {
+      "case": "result_hash_mismatch_should_fail",
+      "expected_pass": false,
+      "observed_pass": false,
+      "passed": true
+    },
+    {
+      "case": "status_exit_mismatch_should_fail",
+      "expected_pass": false,
+      "observed_pass": false,
+      "passed": true
+    },
+    {
+      "case": "real_run_without_url_should_fail",
+      "expected_pass": false,
+      "observed_pass": false,
+      "passed": true
+    },
+    {
+      "case": "artifact_sha_malformed_should_fail",
+      "expected_pass": false,
+      "observed_pass": false,
+      "passed": true
+    }
+  ]
+}
+REVIEW_STATUS: PASS

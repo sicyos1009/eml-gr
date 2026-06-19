@@ -1,0 +1,134 @@
+name: Proof-assistant external CI ingestion
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  EXTERNAL_CI_SCHEMA_VERSION: eml-gr-external-ci-result/1.0.0
+
+jobs:
+  package-source:
+    name: Package source and compute release SHA
+    runs-on: ubuntu-latest
+    outputs:
+      package_sha256: ${{ steps.package.outputs.package_sha256 }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build source release package
+        id: package
+        shell: bash
+        run: |
+          mkdir -p outputs
+          SHA=$(python scripts/package_release_artifact.py --root . --output outputs/eml_gr_ci_source_package.zip --sha-output outputs/eml_gr_ci_source_package.sha256)
+          echo "package_sha256=$SHA" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ci-source-package
+          path: |
+            outputs/eml_gr_ci_source_package.zip
+            outputs/eml_gr_ci_source_package.sha256
+
+  lean-seed:
+    name: Lean seed compile and ingest
+    needs: package-source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Lean
+        uses: leanprover/lean-action@v1
+      - name: Compile Lean seed and emit normalized result
+        id: lean_run
+        shell: bash
+        run: |
+          mkdir -p ci_records logs
+          set +e
+          lean proof_assistant/lean/EMLGRSeedExecutable.lean > logs/lean-seed.log 2>&1
+          RC=$?
+          set -e
+          python scripts/emit_external_ci_result.py \
+            --proof-target-id seed.rindler_cancel.lean \
+            --tool-name lean \
+            --command "lean proof_assistant/lean/EMLGRSeedExecutable.lean" \
+            --exit-code "$RC" \
+            --log logs/lean-seed.log \
+            --target-source proof_assistant/lean/EMLGRSeedExecutable.lean \
+            --artifact-package-sha256 "${{ needs.package-source.outputs.package_sha256 }}" \
+            --output ci_records/lean-seed.json
+          exit "$RC"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lean-external-ci-record
+          path: |
+            ci_records/lean-seed.json
+            logs/lean-seed.log
+
+  rocq-coq-seed:
+    name: Rocq/Coq seed compile and ingest
+    needs: package-source
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile Rocq/Coq seed and emit normalized result
+        uses: coq-community/docker-coq-action@v1
+        with:
+          coq_version: '8.20'
+          custom_script: |
+            startGroup "Compile EML-GR Coq seed"
+              mkdir -p ci_records logs
+              set +e
+              coqc proof_assistant/coq/EMLGRSeedExecutable.v > logs/coq-seed.log 2>&1
+              RC=$?
+              set -e
+              python3 scripts/emit_external_ci_result.py \
+                --proof-target-id seed.rindler_cancel.coq \
+                --tool-name coqc \
+                --command "coqc proof_assistant/coq/EMLGRSeedExecutable.v" \
+                --exit-code "$RC" \
+                --log logs/coq-seed.log \
+                --target-source proof_assistant/coq/EMLGRSeedExecutable.v \
+                --artifact-package-sha256 "${{ needs.package-source.outputs.package_sha256 }}" \
+                --output ci_records/coq-seed.json
+              exit "$RC"
+            endGroup
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coq-external-ci-record
+          path: |
+            ci_records/coq-seed.json
+            logs/coq-seed.log
+
+  collate-external-ci-results:
+    name: Merge and validate external CI records
+    needs: [package-source, lean-seed, rocq-coq-seed]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: '*-external-ci-record'
+          path: downloaded_ci_records
+          merge-multiple: true
+      - name: Merge result records
+        shell: bash
+        run: |
+          mkdir -p outputs
+          python scripts/merge_external_ci_results.py \
+            --records-dir downloaded_ci_records/ci_records \
+            --artifact-package-sha256 "${{ needs.package-source.outputs.package_sha256 }}" \
+            --output outputs/external_ci_results.v1.json
+          python scripts/validate_external_ci_results.py outputs/external_ci_results.v1.json --base downloaded_ci_records --output outputs/external_ci_validation_report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: external-ci-results-v1
+          path: |
+            outputs/external_ci_results.v1.json
+            outputs/external_ci_validation_report.json
+            downloaded_ci_records/**

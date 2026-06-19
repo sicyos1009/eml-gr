@@ -1,0 +1,15 @@
+{
+  "artifact": "eml-gr-v39-github-actions-release-template",
+  "version": "0.39",
+  "created_utc": "2026-06-19T00:00:00Z",
+  "purpose": "Repository-ready GitHub Actions template for external proof-assistant CI result ingestion.",
+  "does_not_claim_local_compiled_lean_or_coq": true,
+  "main_commands": [
+    "python scripts/review_v39_template.py",
+    "python scripts/simulate_fixture_records.py --root ."
+  ],
+  "expected_outputs": [
+    "examples/external_ci_results.example.v1.json",
+    "outputs/v39_template_review_report.json"
+  ]
+}

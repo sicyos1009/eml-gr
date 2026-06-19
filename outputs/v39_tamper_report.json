@@ -1,0 +1,27 @@
+{
+  "all_tampered_failed": true,
+  "baseline_passed": true,
+  "cases": [
+    {
+      "case": "baseline_should_pass",
+      "passed": true
+    },
+    {
+      "case": "result_hash_mismatch_should_fail",
+      "passed": true
+    },
+    {
+      "case": "status_exit_mismatch_should_fail",
+      "passed": true
+    },
+    {
+      "case": "real_run_without_url_should_fail",
+      "passed": true
+    },
+    {
+      "case": "artifact_sha_malformed_should_fail",
+      "passed": true
+    }
+  ],
+  "review_pass": true
+}

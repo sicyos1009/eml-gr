@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this artifact template, cite the EML-GR proof-carrying artifact package."
+title: "EML-GR v0.39 GitHub Actions release template"
+version: "0.39"
+date-released: "2026-06-19"
+authors:
+  - family-names: "EML-GR Project"
+    given-names: "Research Artifact"
