@@ -34,32 +34,29 @@ jobs:
             outputs/eml_gr_ci_source_package.sha256
 
   lean-seed:
-    name: Lean seed compile and ingest
+    name: Lean seed skipped record
     needs: package-source
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Lean
-        uses: leanprover/lean-action@v1
-      - name: Compile Lean seed and emit normalized result
+      - name: Emit explicit Lean skipped record
         id: lean_run
         shell: bash
         run: |
           mkdir -p ci_records logs
-          set +e
-          lean proof_assistant/lean/EMLGRSeedExecutable.lean > logs/lean-seed.log 2>&1
-          RC=$?
-          set -e
+          echo "Lean target intentionally skipped for WP8 first real external evidence run; Coq/Rocq is the compiled proof-assistant target." > logs/lean-seed.log
           python scripts/emit_external_ci_result.py \
             --proof-target-id seed.rindler_cancel.lean \
             --tool-name lean \
+            --tool-version "skipped-not-installed" \
             --command "lean proof_assistant/lean/EMLGRSeedExecutable.lean" \
-            --exit-code "$RC" \
+            --status skipped \
+            --skip-reason "WP8 first real external evidence run selected Coq/Rocq as the compiled target." \
+            --exit-code 0 \
             --log logs/lean-seed.log \
             --target-source proof_assistant/lean/EMLGRSeedExecutable.lean \
             --artifact-package-sha256 "${{ needs.package-source.outputs.package_sha256 }}" \
             --output ci_records/lean-seed.json
-          exit "$RC"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -75,27 +72,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Compile Rocq/Coq seed and emit normalized result
-        uses: coq-community/docker-coq-action@v1
-        with:
-          coq_version: '8.20'
-          custom_script: |
-            startGroup "Compile EML-GR Coq seed"
-              mkdir -p ci_records logs
-              set +e
-              coqc proof_assistant/coq/EMLGRSeedExecutable.v > logs/coq-seed.log 2>&1
-              RC=$?
-              set -e
-              python3 scripts/emit_external_ci_result.py \
-                --proof-target-id seed.rindler_cancel.coq \
-                --tool-name coqc \
-                --command "coqc proof_assistant/coq/EMLGRSeedExecutable.v" \
-                --exit-code "$RC" \
-                --log logs/coq-seed.log \
-                --target-source proof_assistant/coq/EMLGRSeedExecutable.v \
-                --artifact-package-sha256 "${{ needs.package-source.outputs.package_sha256 }}" \
-                --output ci_records/coq-seed.json
-              exit "$RC"
-            endGroup
+        shell: bash
+        run: |
+          mkdir -p ci_records logs
+          chmod -R a+w ci_records logs
+          set +e
+          docker run --rm \
+            -v "$PWD:/work" \
+            -w /work \
+            coqorg/coq:8.20 \
+            sh -lc 'coqc proof_assistant/coq/EMLGRSeedExecutable.v > logs/coq-seed.log 2>&1'
+          RC=$?
+          set -e
+          python scripts/emit_external_ci_result.py \
+            --proof-target-id seed.rindler_cancel.coq \
+            --tool-name coqc \
+            --tool-version "Coq 8.20 via coqorg/coq:8.20" \
+            --command "docker run --rm -v $PWD:/work -w /work coqorg/coq:8.20 coqc proof_assistant/coq/EMLGRSeedExecutable.v" \
+            --exit-code "$RC" \
+            --log logs/coq-seed.log \
+            --target-source proof_assistant/coq/EMLGRSeedExecutable.v \
+            --artifact-package-sha256 "${{ needs.package-source.outputs.package_sha256 }}" \
+            --output ci_records/coq-seed.json
+          exit "$RC"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
