@@ -1,0 +1,10 @@
+CMD: /opt/pyvenv/bin/python /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/scripts/emlgr_api_contract_smoke_v1_1.py --package-root /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final --bundle evidence/examples/zero_bundle_v1_2.v1_1_evidence_depth.json --out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/emlgr_api_contract_smoke_v1_1.json --md-out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/emlgr_api_contract_smoke_v1_1.md
+RETURN: 0
+STDOUT:
+{
+  "review_pass": true,
+  "issue_count": 0
+}
+
+STDERR:
+

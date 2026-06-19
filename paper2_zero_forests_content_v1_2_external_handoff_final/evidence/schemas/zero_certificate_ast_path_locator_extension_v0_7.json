@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eml-gr-zero-certificate-ast-path-extension-v0.7.schema.json",
+  "title": "Zero certificate AST-path occurrence locator extension v0.7",
+  "type": "object",
+  "description": "Content-level schema sketch for AST-path locators used in Paper2 Zero Forests content kit v0.7.",
+  "required": [
+    "locator_kind",
+    "ast_locator"
+  ],
+  "properties": {
+    "locator_kind": {
+      "const": "ast_path_v1"
+    },
+    "legacy_locator_kind": {
+      "enum": [
+        "literal_span_v1"
+      ]
+    },
+    "ast_locator": {
+      "type": "object",
+      "required": [
+        "ast_profile",
+        "target_field",
+        "path",
+        "payload_binding",
+        "expected_expr",
+        "ast_node_hash"
+      ],
+      "properties": {
+        "ast_profile": {
+          "const": "zf_expr_ast_v1.python_infix_nary_add_mul"
+        },
+        "target_field": {
+          "enum": [
+            "before_expr",
+            "after_expr"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^\\$(\\.(terms|factors)\\[[0-9]+(:[0-9]+)?\\])*$"
+        },
+        "path_semantics": {
+          "type": "string"
+        },
+        "payload_binding": {
+          "type": "object",
+          "required": [
+            "subleaf_id",
+            "payload_field"
+          ],
+          "properties": {
+            "subleaf_id": {
+              "type": "string"
+            },
+            "payload_field": {
+              "type": "string"
+            }
+          }
+        },
+        "expected_expr": {
+          "type": "string"
+        },
+        "literal_span_v0_6_retained_for_audit_only": {
+          "type": "boolean"
+        },
+        "ast_node_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eml-gr.local/schemas/zero_certificate_schema_v1_2.json",
+  "title": "EML-GR Zero Certificate Bundle Schema v1.2 Draft",
+  "type": "object",
+  "required": [
+    "schema_id",
+    "schema_version",
+    "artifact_version",
+    "created_utc",
+    "source_baseline",
+    "normalization_policy",
+    "rule_registry",
+    "certificates"
+  ],
+  "properties": {
+    "schema_id": {
+      "const": "eml-gr-zero-certificate-bundle"
+    },
+    "schema_version": {
+      "const": "1.2.0-draft"
+    },
+    "artifact_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created_utc": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_baseline": {
+      "type": "object",
+      "required": ["project", "baseline", "wp"],
+      "properties": {
+        "project": {"type": "string"},
+        "baseline": {"type": "string"},
+        "wp": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "normalization_policy": {
+      "type": "object",
+      "required": ["raw_trace_hash", "normalized_hash", "canonical_json"],
+      "properties": {
+        "raw_trace_hash": {"type": "string"},
+        "normalized_hash": {"type": "string"},
+        "canonical_json": {"type": "string"},
+        "ignored_in_normalized_hash": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "rule_registry": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/rule"}
+    },
+    "certificates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/zeroCertificate"}
+    }
+  },
+  "$defs": {
+    "rule": {
+      "type": "object",
+      "required": ["rule_id", "rule_class", "description", "replay_semantics"],
+      "properties": {
+        "rule_id": {"type": "string", "pattern": "^[A-Z]+\\.[A-Z0-9_]+$"},
+        "rule_class": {
+          "enum": [
+            "algebra",
+            "calculus",
+            "tensor_definition",
+            "tensor_identity",
+            "domain",
+            "lowering",
+            "hashing"
+          ]
+        },
+        "description": {"type": "string"},
+        "replay_semantics": {"type": "string"},
+        "formal_fragment_eligible": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "zeroCertificate": {
+      "type": "object",
+      "required": [
+        "kind",
+        "claim_id",
+        "object_signature",
+        "assumptions",
+        "domain",
+        "normalized_obligation",
+        "routes",
+        "normalized_hash",
+        "formal_fragment",
+        "trust_boundary"
+      ],
+      "properties": {
+        "kind": {"const": "zero_certificate"},
+        "claim_id": {"type": "string", "minLength": 1},
+        "object_signature": {"$ref": "#/$defs/objectSignature"},
+        "assumptions": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "domain": {"$ref": "#/$defs/domain"},
+        "normalized_obligation": {"$ref": "#/$defs/normalizedObligation"},
+        "routes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/routeTrace"}
+        },
+        "normalized_hash": {"type": "string", "pattern": "^[0-9a-f]{16,64}$"},
+        "formal_fragment": {
+          "enum": [
+            "laurent_polynomial_zero",
+            "elementary_algebra_zero",
+            "tensor_skeleton_plus_algebra_leaf",
+            "outside_formal_seed"
+          ]
+        },
+        "trust_boundary": {
+          "enum": [
+            "level_A_algebra_leaf_replay",
+            "level_B_tensor_skeleton_plus_algebra_leaf_replay",
+            "level_C_formal_assistant_candidate"
+          ]
+        },
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "objectSignature": {
+      "type": "object",
+      "required": ["geometry", "tensor", "component", "structural_zero"],
+      "properties": {
+        "geometry": {"type": "string"},
+        "tensor": {"type": "string"},
+        "component": {"type": "string"},
+        "coordinate_chart": {"type": "string"},
+        "index_convention": {"type": "string"},
+        "structural_zero": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "domain": {
+      "type": "object",
+      "required": ["domain_id", "conditions"],
+      "properties": {
+        "domain_id": {"type": "string"},
+        "conditions": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "side_condition_refs": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "additionalProperties": false
+    },
+    "normalizedObligation": {
+      "type": "object",
+      "required": [
+        "schema_major",
+        "kind",
+        "claim_id",
+        "lhs_expr",
+        "target_normal_form",
+        "required_rule_classes",
+        "side_condition_refs",
+        "formal_fragment"
+      ],
+      "properties": {
+        "schema_major": {"const": "1.2"},
+        "kind": {"const": "zero_certificate"},
+        "claim_id": {"type": "string"},
+        "lhs_expr": {"type": "string"},
+        "target_normal_form": {"const": "0"},
+        "required_rule_classes": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "algebra",
+              "calculus",
+              "tensor_definition",
+              "tensor_identity",
+              "domain",
+              "lowering",
+              "hashing"
+            ]
+          }
+        },
+        "side_condition_refs": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "formal_fragment": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "routeTrace": {
+      "type": "object",
+      "required": ["route_id", "route_kind", "steps", "final_expr", "raw_trace_hash"],
+      "properties": {
+        "route_id": {"type": "string"},
+        "route_kind": {
+          "enum": ["direct", "factored", "definition_first", "identity_first", "backend_trace"]
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/proofStep"}
+        },
+        "final_expr": {"type": "string"},
+        "raw_trace_hash": {"type": "string", "pattern": "^[0-9a-f]{16,64}$"},
+        "route_notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "proofStep": {
+      "type": "object",
+      "required": [
+        "step_id",
+        "rule_id",
+        "rule_class",
+        "before_expr",
+        "after_expr",
+        "side_conditions",
+        "replay_method",
+        "trust_boundary"
+      ],
+      "properties": {
+        "step_id": {"type": "string"},
+        "rule_id": {"type": "string"},
+        "rule_class": {
+          "enum": [
+            "algebra",
+            "calculus",
+            "tensor_definition",
+            "tensor_identity",
+            "domain",
+            "lowering",
+            "hashing"
+          ]
+        },
+        "before_expr": {"type": "string"},
+        "after_expr": {"type": "string"},
+        "side_conditions": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "replay_method": {
+          "enum": [
+            "sympy_simplify_zero_difference",
+            "laurent_normal_form",
+            "declared_tensor_rule_plus_algebra_leaf",
+            "domain_limit",
+            "grammar_check"
+          ]
+        },
+        "trust_boundary": {
+          "enum": [
+            "checked_algebra_leaf",
+            "declared_tensor_step",
+            "checked_domain_side_condition",
+            "checked_grammar",
+            "external_oracle"
+          ]
+        },
+        "notes": {"type": "string"}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

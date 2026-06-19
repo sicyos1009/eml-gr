@@ -1,0 +1,203 @@
+{
+  "title": "Paper2 Zero Forests v1.2 external-handoff replay report",
+  "review_pass": true,
+  "strict_level": "Level-B+ external handoff preflight over v1.1 evidence-depth",
+  "canonical_bundle": "evidence/examples/zero_bundle_v1_2.v1_2_external_handoff.json",
+  "canonical_bundle_sha256": "4cc5a30e7da1c6b6a006c541e07dedf72e272779540c056c8d7fcd76468f59de",
+  "counts": {
+    "zero_claims": 4,
+    "routes": 8,
+    "steps": 28,
+    "routes_ok": 8,
+    "steps_ok": 28,
+    "raw_hashes_recomputed_ok": 8,
+    "normalized_hashes_recomputed_ok": 4,
+    "unique_normalized_certificates": 4,
+    "tensor_subleaves": 6,
+    "ast_locators": 14,
+    "ast_locators_checked_ok": 14,
+    "tensor_steps_with_ast_locators": 4,
+    "typed_provenance": 14,
+    "typed_provenance_checked_ok": 14,
+    "tensor_steps_with_typed_provenance": 4,
+    "typed_dependency_edges": 10,
+    "typed_dependency_edges_checked_ok": 10
+  },
+  "external_handoff_counts": {
+    "local_preflight_jobs": 5,
+    "real_external_run_claimed": false,
+    "proof_assistant_compile_attempted": false,
+    "proof_assistant_compiled_pass": false,
+    "strict_real_validator_rejected_local_preflight": true
+  },
+  "gates": {
+    "SCHEMA": true,
+    "RC1": true,
+    "RC2": true,
+    "RC3": true,
+    "RC4": true,
+    "RC5": true,
+    "RC6": true,
+    "RC7": true,
+    "RC8": true,
+    "RC9": true,
+    "AP1": true,
+    "AP2": true,
+    "AP3": true,
+    "AP4": true,
+    "AP5": true,
+    "AP6": true,
+    "AP7": true,
+    "TP1": true,
+    "TP2": true,
+    "TP3": true,
+    "TP4": true,
+    "TP5": true,
+    "TP6": true,
+    "TP7": true,
+    "TP8": true,
+    "TP9": true,
+    "DF1": true,
+    "DF2": true,
+    "DF3": true,
+    "DF4": true,
+    "DF5": true,
+    "DF6": true,
+    "DF7": true,
+    "DF8": true,
+    "DF9": true,
+    "DF10": true,
+    "ED1_no_manuscript_dir": true,
+    "ED2_core_typeflow_replay_pass": true,
+    "ED3_inherited_v1_0_freeze_pass": true,
+    "ED4_external_ci_dryrun_record_validates": true,
+    "ED5_no_false_proof_assistant_compile_claim": true,
+    "ED6_local_algebra_kernel_witness_pass": true,
+    "ED7_emlgr_api_smoke_pass": true,
+    "ED8_evidence_depth_links_base_hash": true,
+    "ED9_manifest_and_checksums_present": true,
+    "ED10_guardrails_present": true,
+    "EH1_no_manuscript_dir": true,
+    "EH2_inherited_v1_1_replay_pass": true,
+    "EH3_local_preflight_record_validates": true,
+    "EH4_require_real_rejects_local_preflight": true,
+    "EH5_no_false_real_external_claim": true,
+    "EH6_proof_assistant_probe_no_overclaim": true,
+    "EH7_handoff_files_present": true,
+    "EH8_bundle_links_parent_v1_1": true,
+    "EH9_manifest_and_checksums_present": true,
+    "EH10_guardrails_present": true
+  },
+  "external_handoff_gates": {
+    "EH1_no_manuscript_dir": true,
+    "EH2_inherited_v1_1_replay_pass": true,
+    "EH3_local_preflight_record_validates": true,
+    "EH4_require_real_rejects_local_preflight": true,
+    "EH5_no_false_real_external_claim": true,
+    "EH6_proof_assistant_probe_no_overclaim": true,
+    "EH7_handoff_files_present": true,
+    "EH8_bundle_links_parent_v1_1": true,
+    "EH9_manifest_and_checksums_present": true,
+    "EH10_guardrails_present": true
+  },
+  "claim_posture": {
+    "allowed": [
+      "Level-B+ selected zero forest content evidence inherited from v1.1",
+      "hosted-CI handoff workflow and strict record validator",
+      "local preflight of external-evidence plumbing",
+      "tamper rejection for false real-run claims"
+    ],
+    "not_claimed": [
+      "real external CI success",
+      "Lean/Coq/Rocq compiled theorem unless a hosted compile record is supplied",
+      "full tensor CAS verification",
+      "full componentwise Bianchi theorem",
+      "universal zero-decision procedure"
+    ]
+  },
+  "issue_count": 0,
+  "warning_count": 10,
+  "issues": [],
+  "warnings": [
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+      "route_id": "rindler_route_A_diff_then_cancel",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+      "route_id": "rindler_route_B_power_form",
+      "step_id": "B1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+      "step_id": "A2"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_B_named_subleaves_factor_first",
+      "step_id": "B1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_B_named_subleaves_factor_first",
+      "step_id": "B2"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.schwarzschild.ricci_channel_pair",
+      "route_id": "schwarzschild_route_A_direct_pair",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.schwarzschild.ricci_channel_pair",
+      "route_id": "schwarzschild_route_B_numerator_zero",
+      "step_id": "B1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+      "route_id": "ppwave_route_A_second_derivatives",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+      "route_id": "ppwave_route_B_harmonic_laplacian",
+      "step_id": "B1"
+    }
+  ]
+}

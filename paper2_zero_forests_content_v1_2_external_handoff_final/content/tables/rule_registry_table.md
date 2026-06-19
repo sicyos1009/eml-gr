@@ -1,0 +1,22 @@
+# Rule registry table
+
+| rule_id | rule_class | formal_fragment_eligible | replay_semantics | description |
+|---|---|---|---|---|
+| ALG.ADD_ASSOC_COMM | algebra | True | checked by scalar normal form or simplify difference | Canonical associativity/commutativity of addition. |
+| ALG.MUL_ASSOC_COMM | algebra | True | checked by scalar normal form or simplify difference | Canonical associativity/commutativity of multiplication. |
+| ALG.ADD_INVERSE | algebra | True | checked by simplify(before-after)==0 | f + (-f) cancels to zero. |
+| ALG.MUL_ZERO | algebra | True | checked by simplify(before-after)==0 | 0*f or f*0 cancels to zero. |
+| ALG.COMMON_DENOM_CANCEL | algebra | True | checked by simplify(before-after)==0 and domain side condition | a/d - a/d cancels under certified nonzero denominator. |
+| ALG.EXP_CANCEL | algebra | True | checked by simplify(before-after)==0 with real branch side condition | exp(a)*exp(-a) cancels on the real branch. |
+| ALG.RATIONAL_NORMAL_FORM | algebra | True | checked by simplify or Laurent seed normal form | Rational/Laurent expression normalization. |
+| CALC.DIFF_POWER | calculus | True | checked by sympy differentiation in exported scalar leaf | Derivative of integer powers. |
+| CALC.SECOND_DIFF_QUADRATIC | calculus | True | checked by sympy differentiation in exported scalar leaf | Second derivative of x^2 is 2 and of -y^2 is -2. |
+| CALC.DIFF_EXP_LINEAR | calculus | True | checked by sympy differentiation in exported scalar leaf | Derivative of exp(k*u) is k*exp(k*u). |
+| TDEF.RIEMANN_FROM_GAMMA | tensor_definition | False | declared tensor step; algebra leaf checked independently | Riemann component exported from Christoffel data. |
+| TDEF.RICCI_CONTRACTION | tensor_definition | False | declared tensor step; algebra leaf checked independently | Ricci component exported by contraction of Riemann. |
+| TDEF.COVARIANT_DIVERGENCE | tensor_definition | False | declared tensor step; algebra leaf checked independently | Covariant divergence component expanded to scalar terms. |
+| TDEF.PPWAVE_RICCI_UU | tensor_definition | False | declared tensor step; algebra leaf checked independently | pp-wave Ricci component R_uu = -1/2(H_xx+H_yy). |
+| TID.CONTRACTED_BIANCHI | tensor_identity | False | declared tensor identity; selected algebra leaf checked independently | Contracted Bianchi identity for Einstein tensor divergence. |
+| DOM.NONZERO_DENOMINATOR | domain | True | recorded as side condition; future domain checker verifies | Denominator is nonzero on the certified domain. |
+| DOM.POSITIVE_COORDINATE | domain | True | recorded as side condition; future domain checker verifies | Coordinate positivity condition such as rho>0 or r>2M. |
+| DOM.REAL_BRANCH | domain | True | recorded as side condition; future branch checker verifies | Real branch obligations for exp/log/sqrt simplification. |

@@ -1,0 +1,43 @@
+{
+  "title": "External CI record validation v1.2",
+  "review_pass": false,
+  "require_real": false,
+  "real_external_run": false,
+  "jobs_checked": 4,
+  "job_classes": [
+    "emlgr_api_smoke",
+    "local_algebra_kernel",
+    "tamper_suite",
+    "zero_replay"
+  ],
+  "jobs_ok_or_checked": 4,
+  "pass_compile_jobs": 0,
+  "gates": {
+    "XR1": true,
+    "XR2": true,
+    "XR3": true,
+    "XR4": false,
+    "XR5": true,
+    "XR6": true,
+    "XR7": true,
+    "XR8": true,
+    "XR9": true
+  },
+  "issue_count": 2,
+  "warning_count": 0,
+  "issues": [
+    {
+      "gate": "XR4",
+      "code": "REQUIRED_JOB_CLASSES_MISSING",
+      "missing": [
+        "proof_assistant_compile_probe"
+      ]
+    },
+    {
+      "gate": "XR4",
+      "code": "TOO_FEW_JOBS",
+      "observed": 4
+    }
+  ],
+  "warnings": []
+}

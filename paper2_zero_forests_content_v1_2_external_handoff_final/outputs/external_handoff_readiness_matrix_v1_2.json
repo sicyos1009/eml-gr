@@ -1,0 +1,41 @@
+{
+  "schema_id": "paper2.zero_forests.external_handoff_readiness_matrix.v1_2",
+  "artifact_id": "paper2_zero_forests_content_v1_2_external_handoff_final",
+  "version": "1.2.0-external-handoff-final",
+  "created_utc": "2026-06-19T12:15:00Z",
+  "readiness_pass": true,
+  "real_external_run_available": false,
+  "proof_assistant_compiled_pass_available": false,
+  "items": [
+    {
+      "item": "canonical v1.2 bundle",
+      "status": "ready",
+      "evidence": "evidence/examples/zero_bundle_v1_2.v1_2_external_handoff.json"
+    },
+    {
+      "item": "local preflight external record",
+      "status": "pass",
+      "evidence": "external_ci/external_ci_results.v1_2.local_preflight.json"
+    },
+    {
+      "item": "strict real validator",
+      "status": "ready; rejects local preflight in --require-real mode",
+      "evidence": "outputs/external_ci_validation_v1_2_require_real_expected_fail.json"
+    },
+    {
+      "item": "hosted workflow template",
+      "status": "ready",
+      "evidence": ".github/workflows/paper2_zero_forest_external_ci.yml"
+    },
+    {
+      "item": "proof assistant compile evidence",
+      "status": "not claimed in packaged local preflight",
+      "evidence": "outputs/proof_assistant_compile_probe_v1_2.json"
+    },
+    {
+      "item": "tamper suite",
+      "status": "pass",
+      "evidence": "outputs/tamper_suite_v1_2_external_handoff_report.json"
+    }
+  ]
+}

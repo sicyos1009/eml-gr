@@ -1,0 +1,73 @@
+{
+  "schema_id": "tamper_suite_v1_1_evidence_depth_report.v1",
+  "baseline_pass": true,
+  "total_cases": 9,
+  "malicious_cases": 8,
+  "malicious_cases_rejected": 8,
+  "all_expectations_met": true,
+  "cases": [
+    {
+      "case_id": "baseline_untampered",
+      "expected_pass": true,
+      "actual_pass": true,
+      "expectation_met": true,
+      "report": "outputs/tamper_cases_v1_1_evidence_depth/baseline_untampered.ingestion_report.json"
+    },
+    {
+      "case_id": "schema_id_mutated",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "report": "outputs/tamper_cases_v1_1_evidence_depth/schema_id_mutated.ingestion_report.json"
+    },
+    {
+      "case_id": "raw_log_hash_mutated",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "report": "outputs/tamper_cases_v1_1_evidence_depth/raw_log_hash_mutated.ingestion_report.json"
+    },
+    {
+      "case_id": "output_hash_mutated",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "report": "outputs/tamper_cases_v1_1_evidence_depth/output_hash_mutated.ingestion_report.json"
+    },
+    {
+      "case_id": "required_job_deleted",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "report": "outputs/tamper_cases_v1_1_evidence_depth/required_job_deleted.ingestion_report.json"
+    },
+    {
+      "case_id": "false_real_external_run_claim",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "report": "outputs/tamper_cases_v1_1_evidence_depth/false_real_external_run_claim.ingestion_report.json"
+    },
+    {
+      "case_id": "compiled_pass_external_overclaim",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "report": "outputs/tamper_cases_v1_1_evidence_depth/compiled_pass_external_overclaim.ingestion_report.json"
+    },
+    {
+      "case_id": "limitations_deleted",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "report": "outputs/tamper_cases_v1_1_evidence_depth/limitations_deleted.ingestion_report.json"
+    },
+    {
+      "case_id": "bad_status_vocab",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "report": "outputs/tamper_cases_v1_1_evidence_depth/bad_status_vocab.ingestion_report.json"
+    }
+  ]
+}

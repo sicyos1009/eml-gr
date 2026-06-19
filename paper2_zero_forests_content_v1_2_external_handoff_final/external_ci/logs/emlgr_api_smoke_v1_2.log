@@ -1,0 +1,12 @@
+$ C:\Users\sicyo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe scripts/emlgr_api_contract_smoke_v1_1.py --package-root . --out outputs/emlgr_api_contract_smoke_v1_2.json --md-out outputs/emlgr_api_contract_smoke_v1_2.md
+
+[stdout]
+{
+  "review_pass": true,
+  "issue_count": 0
+}
+
+[stderr]
+
+[returncode]
+0

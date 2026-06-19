@@ -1,0 +1,31 @@
+{
+  "schema_id": "emlgr.local_algebra_kernel_witness.v1_1",
+  "created_utc": "2026-06-19T10:59:03Z",
+  "backend": {
+    "name": "sympy",
+    "version": "1.14.0"
+  },
+  "review_pass": true,
+  "case_count": 3,
+  "cases_passed": 3,
+  "cases": [
+    {
+      "case_id": "schwarzschild.common_denom_leaf",
+      "simplified_expr": "0",
+      "passed": true
+    },
+    {
+      "case_id": "flrw.exp_cancel_leaf",
+      "simplified_expr": "0",
+      "passed": true
+    },
+    {
+      "case_id": "flrw.selected_divergence_scalar_leaf",
+      "simplified_expr": "0",
+      "passed": true
+    }
+  ],
+  "claim_posture": "local algebra-kernel witness only; not proof-assistant compile evidence",
+  "issue_count": 0,
+  "issues": []
+}

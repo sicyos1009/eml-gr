@@ -1,0 +1,87 @@
+{
+  "schema_id": "emlgr.external_ci_results.v1_1",
+  "record_id": "v1_1_local_dry_run_evidence_depth_final",
+  "created_utc": "2026-06-19T10:59:06Z",
+  "artifact_id": "paper2_zero_forests_content_v1_1_evidence_depth_final",
+  "artifact_version": "1.1.0-evidence-depth-final",
+  "real_external_run": false,
+  "provider": "local-dry-run",
+  "trust_level": "dry_run_provenance_only",
+  "repository": "not_applicable_local_dry_run",
+  "commit_sha": "not_applicable_local_dry_run",
+  "workflow_run_url": "not_applicable_local_dry_run",
+  "runner_image": "local-container",
+  "tool_versions": {
+    "python": "3.13.5"
+  },
+  "canonical_bundle_path": "evidence/examples/zero_bundle_v1_2.v1_1_evidence_depth.json",
+  "canonical_bundle_sha256": "421f2bff0fc464c96e61bcdad45520b297e3500beab45bda9fc1c9375034acac",
+  "jobs": [
+    {
+      "job_id": "zero_replay_v1_1_local",
+      "job_class": "zero_replay",
+      "status": "pass",
+      "report_path": "outputs/replay_report_v1_1_core_typeflow.json",
+      "report_sha256": "9d1ada678215f1aa16265b8126bd7477dbd72d292d1339c24736f404aff1a9b5",
+      "output_path": "outputs/replay_report_v1_1_core_typeflow.json",
+      "output_sha256": "9d1ada678215f1aa16265b8126bd7477dbd72d292d1339c24736f404aff1a9b5",
+      "raw_log_path": "external_ci/logs/zf_replay_core_v1_1.log",
+      "raw_log_sha256": "d0f5dcf4e09d2e96c02182ef60af17fd38a0aa559f822075c839f675180b5950"
+    },
+    {
+      "job_id": "freeze_replay_v1_0_inherited",
+      "job_class": "freeze_replay",
+      "status": "pass",
+      "report_path": "outputs/replay_report_v1_0_freeze_inherited_v1_1.json",
+      "report_sha256": "22f88dc4c37232422b370b006eaffa0e32f17f059494df0a2c319cbc70c00c87",
+      "output_path": "outputs/replay_report_v1_0_freeze_inherited_v1_1.json",
+      "output_sha256": "22f88dc4c37232422b370b006eaffa0e32f17f059494df0a2c319cbc70c00c87",
+      "raw_log_path": "external_ci/logs/zf_replay_freeze_v1_0_inherited.log",
+      "raw_log_sha256": "58a701fa0c2649868ec5ce94a7f9639131763326b86249a7fb3e3122b7e956d5"
+    },
+    {
+      "job_id": "emlgr_api_unittest_local",
+      "job_class": "emlgr_api_smoke",
+      "status": "pass",
+      "report_path": "outputs/emlgr_api_contract_smoke_v1_1.json",
+      "report_sha256": "9c61deb823853c446cc0d2a841a0b75339a9daef3c045d29f4998401d735036b",
+      "output_path": "outputs/emlgr_api_contract_smoke_v1_1.json",
+      "output_sha256": "9c61deb823853c446cc0d2a841a0b75339a9daef3c045d29f4998401d735036b",
+      "raw_log_path": "external_ci/logs/emlgr_api_smoke_v1_1.log",
+      "raw_log_sha256": "6330b4eb52e25acd1a6e4e78b26456860b912a62dab463945044a47d72c2c13f"
+    },
+    {
+      "job_id": "local_algebra_kernel_witness",
+      "job_class": "local_algebra_kernel",
+      "status": "pass",
+      "report_path": "outputs/local_algebra_kernel_witness_v1_1.json",
+      "report_sha256": "21557ad6fd4c71becb97bf54e78fca4c9410d3ed83c769b95d40704230de1f94",
+      "output_path": "outputs/local_algebra_kernel_witness_v1_1.json",
+      "output_sha256": "21557ad6fd4c71becb97bf54e78fca4c9410d3ed83c769b95d40704230de1f94",
+      "raw_log_path": "external_ci/logs/local_algebra_kernel_witness_v1_1.log",
+      "raw_log_sha256": "2820c09848c05336ca799abd226e08f1a6595ae33fb530636d6faf24897c74d6"
+    },
+    {
+      "job_id": "formal_seed_tool_probe",
+      "job_class": "proof_assistant_probe",
+      "status": "pass",
+      "report_path": "outputs/proof_assistant_env_probe_v1_1.json",
+      "report_sha256": "f021aeb263ce220d274110a1954363fea55b3dd31180eb243669a954a739f96c",
+      "output_path": "outputs/proof_assistant_env_probe_v1_1.json",
+      "output_sha256": "f021aeb263ce220d274110a1954363fea55b3dd31180eb243669a954a739f96c",
+      "raw_log_path": "external_ci/logs/proof_assistant_env_probe_v1_1.log",
+      "raw_log_sha256": "a3a3ed615898b4bf4417210d6f4195180d178fb2103d8ec7ea2439defcfeadc3"
+    }
+  ],
+  "summary": {
+    "overall_pass": true,
+    "replay_review_pass": true,
+    "emlgr_api_tests_pass": true,
+    "local_algebra_kernel_witness_pass": true,
+    "formal_seed_tool_probe_pass": true,
+    "compiled_pass_external": false,
+    "real_external_run": false,
+    "claim_upgrade_allowed": false
+  },
+  "limitations": []
+}

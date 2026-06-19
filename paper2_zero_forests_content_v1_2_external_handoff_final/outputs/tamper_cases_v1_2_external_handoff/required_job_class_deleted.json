@@ -1,0 +1,75 @@
+{
+  "schema_id": "emlgr.external_ci_results.v1_2",
+  "record_id": "v1_2_local_preflight_external_handoff",
+  "created_utc": "2026-06-19T12:15:00Z",
+  "artifact_id": "paper2_zero_forests_content_v1_2_external_handoff_final",
+  "artifact_version": "1.2.0-external-handoff-final",
+  "real_external_run": false,
+  "provider": "local-preflight",
+  "trust_level": "local_preflight_only",
+  "repository": "not_applicable_local_preflight",
+  "commit_sha": "not_applicable_local_preflight",
+  "workflow_run_url": "not_applicable_local_preflight",
+  "runner_image": "Windows-11-10.0.26200-SP0",
+  "tool_versions": {
+    "python": "3.12.13"
+  },
+  "canonical_bundle_path": "evidence\\examples\\zero_bundle_v1_2.v1_2_external_handoff.json",
+  "canonical_bundle_sha256": "4cc5a30e7da1c6b6a006c541e07dedf72e272779540c056c8d7fcd76468f59de",
+  "jobs": [
+    {
+      "job_id": "zero_replay_v1_2",
+      "job_class": "zero_replay",
+      "status": "pass",
+      "report_path": "outputs\\replay_report_v1_2_core_inherited_v1_1.json",
+      "report_sha256": "062e5faba6c779b338572820efba7959d7dde8b7b635d36b75c6ad5a3be89f21",
+      "output_path": "outputs\\replay_report_v1_2_core_inherited_v1_1.json",
+      "output_sha256": "062e5faba6c779b338572820efba7959d7dde8b7b635d36b75c6ad5a3be89f21",
+      "raw_log_path": "external_ci\\logs\\zero_replay_v1_2.log",
+      "raw_log_sha256": "7ff1b7bb1445ecffcd6f4579e466241946caa5afd1ad8d497cc20a3a3d1c36a8"
+    },
+    {
+      "job_id": "tamper_suite_v1_2",
+      "job_class": "tamper_suite",
+      "status": "pass",
+      "report_path": "outputs\\tamper_suite_v1_2_payload_report.json",
+      "report_sha256": "1b8bf1dc0317f07ab435388c313afc0c9d6142c94c5b4c937e70c44972f53f50",
+      "output_path": "outputs\\tamper_suite_v1_2_payload_report.json",
+      "output_sha256": "1b8bf1dc0317f07ab435388c313afc0c9d6142c94c5b4c937e70c44972f53f50",
+      "raw_log_path": "external_ci\\logs\\tamper_suite_v1_2.log",
+      "raw_log_sha256": "6b9f4b63947cdcad5f0b9db2010c172fd45b04609db4eae6720da0247862e61f"
+    },
+    {
+      "job_id": "local_algebra_kernel_witness",
+      "job_class": "local_algebra_kernel",
+      "status": "pass",
+      "report_path": "outputs\\local_algebra_kernel_witness_v1_2.json",
+      "report_sha256": "5cc3e8ea89b887c58d0df68668d8de17845aea003a2017b3e99d20287030e574",
+      "output_path": "outputs\\local_algebra_kernel_witness_v1_2.json",
+      "output_sha256": "5cc3e8ea89b887c58d0df68668d8de17845aea003a2017b3e99d20287030e574",
+      "raw_log_path": "external_ci\\logs\\local_algebra_kernel_v1_2.log",
+      "raw_log_sha256": "e60804cca98715317d2cb0df704095e0b2120ebd60f3245da506ad6150e9b425"
+    },
+    {
+      "job_id": "emlgr_api_smoke",
+      "job_class": "emlgr_api_smoke",
+      "status": "pass",
+      "report_path": "outputs\\emlgr_api_contract_smoke_v1_2.json",
+      "report_sha256": "f4fecd66d1a08ff1995ba968572b2363172358e073ae07dd846d503f87cc2573",
+      "output_path": "outputs\\emlgr_api_contract_smoke_v1_2.json",
+      "output_sha256": "f4fecd66d1a08ff1995ba968572b2363172358e073ae07dd846d503f87cc2573",
+      "raw_log_path": "external_ci\\logs\\emlgr_api_smoke_v1_2.log",
+      "raw_log_sha256": "c240704897117780d3820a6f89b3bc846c02e86a004015f1b14cf5f11dd1f199"
+    }
+  ],
+  "summary": {
+    "review_pass": true,
+    "compiled_pass_external": false,
+    "proof_assistant_compile_job_passed": false,
+    "real_external_run": false
+  },
+  "limitations": [
+    "Local preflight only; not hosted external evidence.",
+    "No proof-assistant compile is claimed unless compiled_pass_external is true in a hosted record."
+  ]
+}

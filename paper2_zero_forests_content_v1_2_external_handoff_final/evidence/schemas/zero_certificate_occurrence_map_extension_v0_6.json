@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eml-gr-zero-certificate-occurrence-map-extension-v0.6.schema.json",
+  "title": "Zero certificate occurrence map extension v0.6",
+  "description": "Literal-span occurrence maps for selected tensor subleaf scalar exports.",
+  "type": "object",
+  "required": [
+    "occurrence_id",
+    "route_id",
+    "step_id",
+    "locator_kind",
+    "target_field",
+    "span_start",
+    "span_end",
+    "literal_occurrence_index_0_based",
+    "subleaf_id",
+    "payload_field",
+    "expr",
+    "patch_action",
+    "occurrence_hash"
+  ],
+  "properties": {
+    "occurrence_id": {
+      "type": "string"
+    },
+    "route_id": {
+      "type": "string"
+    },
+    "step_id": {
+      "type": "string"
+    },
+    "locator_kind": {
+      "const": "literal_span_v1"
+    },
+    "target_field": {
+      "enum": [
+        "before_expr",
+        "after_expr"
+      ]
+    },
+    "span_start": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "span_end": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "literal_occurrence_index_0_based": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "subleaf_id": {
+      "type": "string"
+    },
+    "payload_field": {
+      "type": "string"
+    },
+    "expr": {
+      "type": "string"
+    },
+    "patch_action": {
+      "const": "observe_tensor_subleaf_occurrence"
+    },
+    "occurrence_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{16}$"
+    }
+  }
+}

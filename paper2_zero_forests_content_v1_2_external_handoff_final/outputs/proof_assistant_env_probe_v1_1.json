@@ -1,0 +1,43 @@
+{
+  "schema_id": "emlgr.proof_assistant_env_probe.v1_1",
+  "created_utc": "2026-06-19T10:59:05Z",
+  "real_external_run": false,
+  "compile_attempted": false,
+  "compiled_pass": false,
+  "compile_claimed": false,
+  "any_tool_found": false,
+  "tools": {
+    "lean": {
+      "found": false,
+      "executable": null,
+      "version_stdout": null,
+      "version_stderr": null,
+      "version_returncode": null
+    },
+    "lake": {
+      "found": false,
+      "executable": null,
+      "version_stdout": null,
+      "version_stderr": null,
+      "version_returncode": null
+    },
+    "coqc": {
+      "found": false,
+      "executable": null,
+      "version_stdout": null,
+      "version_stderr": null,
+      "version_returncode": null
+    },
+    "rocq": {
+      "found": false,
+      "executable": null,
+      "version_stdout": null,
+      "version_stderr": null,
+      "version_returncode": null
+    }
+  },
+  "claim_posture": "environment probe only; no compiled theorem claimed",
+  "review_pass": true,
+  "issue_count": 0,
+  "issues": []
+}

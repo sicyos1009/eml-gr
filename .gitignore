@@ -1,0 +1,6 @@
+
+__pycache__/
+*.pyc
+.codex_python_deps/
+.codex_python_deps_local/
+

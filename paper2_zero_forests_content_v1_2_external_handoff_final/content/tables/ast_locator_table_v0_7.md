@@ -1,0 +1,16 @@
+| route_id | step_id | subleaf_id | payload_field | ast_path | ast_node_hash |
+| --- | --- | --- | --- | --- | --- |
+| flrw_route_A_named_subleaves_expand_then_cancel | A1 | flrw.divergence.expanded_nu0 | divergence_expanded_expr | $ | c641a6526b60fee3 |
+| flrw_route_A_named_subleaves_expand_then_cancel | A2 | flrw.divergence.expanded_nu0 | divergence_expanded_expr | $ | c641a6526b60fee3 |
+| flrw_route_A_named_subleaves_expand_then_cancel | A2 | flrw.divergence.expanded_nu0 | partial_G00_expr | $.terms[0] | 9374cfb6031a0d74 |
+| flrw_route_A_named_subleaves_expand_then_cancel | A2 | flrw.connection.gamma_trace_0 | gamma_trace_0_expr | $.terms[1].factors[0:2] | 9d39cec93054620e |
+| flrw_route_A_named_subleaves_expand_then_cancel | A2 | flrw.einstein.G_contra_00 | G_contra_00_expr | $.terms[1].factors[2:4] | 47c4eeba0992419b |
+| flrw_route_A_named_subleaves_expand_then_cancel | A2 | flrw.connection.gamma_0ii | gamma_0ii_expr | $.terms[2].factors[1:3] | d4d89f2e9013d21e |
+| flrw_route_A_named_subleaves_expand_then_cancel | A2 | flrw.einstein.G_contra_ii | G_contra_ii_expr | $.terms[2].factors[3:6] | 5459d450a0c656c5 |
+| flrw_route_B_named_subleaves_factor_first | B1 | flrw.divergence.expanded_nu0 | divergence_expanded_expr | $ | c641a6526b60fee3 |
+| flrw_route_B_named_subleaves_factor_first | B2 | flrw.divergence.expanded_nu0 | divergence_expanded_expr | $ | c641a6526b60fee3 |
+| flrw_route_B_named_subleaves_factor_first | B2 | flrw.divergence.expanded_nu0 | partial_G00_expr | $.terms[0] | 9374cfb6031a0d74 |
+| flrw_route_B_named_subleaves_factor_first | B2 | flrw.connection.gamma_trace_0 | gamma_trace_0_expr | $.terms[1].factors[0:2] | 9d39cec93054620e |
+| flrw_route_B_named_subleaves_factor_first | B2 | flrw.einstein.G_contra_00 | G_contra_00_expr | $.terms[1].factors[2:4] | 47c4eeba0992419b |
+| flrw_route_B_named_subleaves_factor_first | B2 | flrw.connection.gamma_0ii | gamma_0ii_expr | $.terms[2].factors[1:3] | d4d89f2e9013d21e |
+| flrw_route_B_named_subleaves_factor_first | B2 | flrw.einstein.G_contra_ii | G_contra_ii_expr | $.terms[2].factors[3:6] | 5459d450a0c656c5 |

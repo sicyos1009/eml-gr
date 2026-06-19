@@ -1,0 +1,11 @@
+CMD: /opt/pyvenv/bin/python /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/scripts/local_algebra_kernel_witness_v1_1.py --out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/local_algebra_kernel_witness_v1_1.json --md-out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/local_algebra_kernel_witness_v1_1.md
+RETURN: 0
+STDOUT:
+{
+  "review_pass": true,
+  "case_count": 3,
+  "cases_passed": 3
+}
+
+STDERR:
+

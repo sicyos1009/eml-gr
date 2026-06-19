@@ -1,0 +1,11 @@
+CMD: /opt/pyvenv/bin/python /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/scripts/zero_replay_checker_v1_0_freeze.py --package-root /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final --out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/replay_report_v1_0_freeze_inherited_v1_1.json
+RETURN: 0
+STDOUT:
+{
+  "review_pass": true,
+  "issue_count": 0,
+  "warning_count": 10
+}
+
+STDERR:
+

@@ -1,0 +1,14 @@
+$ C:\Users\sicyo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe scripts/proof_assistant_compile_probe_v1_2.py --package-root . --out outputs/proof_assistant_compile_probe_v1_2.json --md-out outputs/proof_assistant_compile_probe_v1_2.md
+
+[stdout]
+{
+  "review_pass": true,
+  "compile_attempted": false,
+  "compiled_pass": false,
+  "any_tool_found": false
+}
+
+[stderr]
+
+[returncode]
+0

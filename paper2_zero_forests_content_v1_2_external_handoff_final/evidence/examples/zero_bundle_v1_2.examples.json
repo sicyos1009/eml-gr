@@ -1,0 +1,715 @@
+{
+  "schema_id": "eml-gr-zero-certificate-bundle",
+  "schema_version": "1.2.0-draft",
+  "artifact_version": "eml-gr-zero-forest-wp10-seed/0.1",
+  "created_utc": "2026-06-19T00:00:00Z",
+  "source_baseline": {
+    "project": "EML-GR Forest",
+    "baseline": "v0.44 submission preprint final package / v0.45 follow-up plan",
+    "wp": "WP10 Zero forest proof language expansion"
+  },
+  "normalization_policy": {
+    "raw_trace_hash": "sha256-16(canonical_json(route_id, route_kind, steps, final_expr, route_notes))",
+    "normalized_hash": "sha256-16(canonical_json(schema_major, kind, claim_id, object_signature, domain_signature, assumptions, zero_obligation, final_normal_form, rule_classes, side_condition_refs, formal_fragment))",
+    "canonical_json": "sort_keys=True,separators=(comma,colon),utf8",
+    "ignored_in_normalized_hash": [
+      "route_id",
+      "route_kind",
+      "steps",
+      "raw_trace_hash",
+      "route_notes",
+      "backend-specific rewrite order"
+    ]
+  },
+  "rule_registry": [
+    {
+      "rule_id": "ALG.ADD_ASSOC_COMM",
+      "rule_class": "algebra",
+      "description": "Canonical associativity/commutativity of addition.",
+      "replay_semantics": "checked by scalar normal form or simplify difference",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.MUL_ASSOC_COMM",
+      "rule_class": "algebra",
+      "description": "Canonical associativity/commutativity of multiplication.",
+      "replay_semantics": "checked by scalar normal form or simplify difference",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.ADD_INVERSE",
+      "rule_class": "algebra",
+      "description": "f + (-f) cancels to zero.",
+      "replay_semantics": "checked by simplify(before-after)==0",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.MUL_ZERO",
+      "rule_class": "algebra",
+      "description": "0*f or f*0 cancels to zero.",
+      "replay_semantics": "checked by simplify(before-after)==0",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.COMMON_DENOM_CANCEL",
+      "rule_class": "algebra",
+      "description": "a/d - a/d cancels under certified nonzero denominator.",
+      "replay_semantics": "checked by simplify(before-after)==0 and domain side condition",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.EXP_CANCEL",
+      "rule_class": "algebra",
+      "description": "exp(a)*exp(-a) cancels on the real branch.",
+      "replay_semantics": "checked by simplify(before-after)==0 with real branch side condition",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.RATIONAL_NORMAL_FORM",
+      "rule_class": "algebra",
+      "description": "Rational/Laurent expression normalization.",
+      "replay_semantics": "checked by simplify or Laurent seed normal form",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "CALC.DIFF_POWER",
+      "rule_class": "calculus",
+      "description": "Derivative of integer powers.",
+      "replay_semantics": "checked by sympy differentiation in exported scalar leaf",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "CALC.SECOND_DIFF_QUADRATIC",
+      "rule_class": "calculus",
+      "description": "Second derivative of x^2 is 2 and of -y^2 is -2.",
+      "replay_semantics": "checked by sympy differentiation in exported scalar leaf",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "CALC.DIFF_EXP_LINEAR",
+      "rule_class": "calculus",
+      "description": "Derivative of exp(k*u) is k*exp(k*u).",
+      "replay_semantics": "checked by sympy differentiation in exported scalar leaf",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "TDEF.RIEMANN_FROM_GAMMA",
+      "rule_class": "tensor_definition",
+      "description": "Riemann component exported from Christoffel data.",
+      "replay_semantics": "declared tensor step; algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TDEF.RICCI_CONTRACTION",
+      "rule_class": "tensor_definition",
+      "description": "Ricci component exported by contraction of Riemann.",
+      "replay_semantics": "declared tensor step; algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TDEF.COVARIANT_DIVERGENCE",
+      "rule_class": "tensor_definition",
+      "description": "Covariant divergence component expanded to scalar terms.",
+      "replay_semantics": "declared tensor step; algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TDEF.PPWAVE_RICCI_UU",
+      "rule_class": "tensor_definition",
+      "description": "pp-wave Ricci component R_uu = -1/2(H_xx+H_yy).",
+      "replay_semantics": "declared tensor step; algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TID.CONTRACTED_BIANCHI",
+      "rule_class": "tensor_identity",
+      "description": "Contracted Bianchi identity for Einstein tensor divergence.",
+      "replay_semantics": "declared tensor identity; selected algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "DOM.NONZERO_DENOMINATOR",
+      "rule_class": "domain",
+      "description": "Denominator is nonzero on the certified domain.",
+      "replay_semantics": "recorded as side condition; future domain checker verifies",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "DOM.POSITIVE_COORDINATE",
+      "rule_class": "domain",
+      "description": "Coordinate positivity condition such as rho>0 or r>2M.",
+      "replay_semantics": "recorded as side condition; future domain checker verifies",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "DOM.REAL_BRANCH",
+      "rule_class": "domain",
+      "description": "Real branch obligations for exp/log/sqrt simplification.",
+      "replay_semantics": "recorded as side condition; future branch checker verifies",
+      "formal_fragment_eligible": true
+    }
+  ],
+  "certificates": [
+    {
+      "kind": "zero_certificate",
+      "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+      "object_signature": {
+        "geometry": "Rindler",
+        "tensor": "Riemann",
+        "component": "R^eta_{rho eta rho}",
+        "coordinate_chart": "Rindler wedge",
+        "index_convention": "EML-GR v0.44 selected component convention",
+        "structural_zero": false
+      },
+      "assumptions": [
+        "rho > 0"
+      ],
+      "domain": {
+        "domain_id": "domain.rindler.rho_positive",
+        "conditions": [
+          "rho > 0"
+        ],
+        "side_condition_refs": [
+          "DOM.POSITIVE_COORDINATE",
+          "DOM.NONZERO_DENOMINATOR"
+        ]
+      },
+      "normalized_obligation": {
+        "schema_major": "1.2",
+        "kind": "zero_certificate",
+        "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+        "lhs_expr": "-diff(1/rho, rho) - 1/rho**2",
+        "target_normal_form": "0",
+        "required_rule_classes": [
+          "algebra",
+          "calculus",
+          "domain",
+          "tensor_definition"
+        ],
+        "side_condition_refs": [
+          "DOM.NONZERO_DENOMINATOR",
+          "DOM.POSITIVE_COORDINATE"
+        ],
+        "formal_fragment": "tensor_skeleton_plus_algebra_leaf"
+      },
+      "routes": [
+        {
+          "route_id": "rindler_route_A_diff_then_cancel",
+          "route_kind": "definition_first",
+          "steps": [
+            {
+              "step_id": "A1",
+              "rule_id": "TDEF.RIEMANN_FROM_GAMMA",
+              "rule_class": "tensor_definition",
+              "before_expr": "-diff(1/rho, rho) - 1/rho**2",
+              "after_expr": "-diff(1/rho, rho) - 1/rho**2",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Selected Riemann component exported to scalar leaf."
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "CALC.DIFF_POWER",
+              "rule_class": "calculus",
+              "before_expr": "-diff(1/rho, rho) - 1/rho**2",
+              "after_expr": "1/rho**2 - 1/rho**2",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "A3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "1/rho**2 - 1/rho**2",
+              "after_expr": "0",
+              "side_conditions": [
+                "rho>0",
+                "rho**2 != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Differentiate the Christoffel leaf first, then cancel.",
+          "raw_trace_hash": "bd7990bdfb10fa14"
+        },
+        {
+          "route_id": "rindler_route_B_power_form",
+          "route_kind": "factored",
+          "steps": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.RIEMANN_FROM_GAMMA",
+              "rule_class": "tensor_definition",
+              "before_expr": "-diff(rho**(-1), rho) - rho**(-2)",
+              "after_expr": "-diff(rho**(-1), rho) - rho**(-2)",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Same scalar leaf after rewriting 1/rho as rho**(-1)."
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "CALC.DIFF_POWER",
+              "rule_class": "calculus",
+              "before_expr": "-diff(rho**(-1), rho) - rho**(-2)",
+              "after_expr": "-(-rho**(-2)) - rho**(-2)",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "-(-rho**(-2)) - rho**(-2)",
+              "after_expr": "0",
+              "side_conditions": [
+                "rho>0",
+                "rho**2 != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Rewrite reciprocal as a power, then cancel.",
+          "raw_trace_hash": "044afa190cec768b"
+        }
+      ],
+      "normalized_hash": "891eaefce7260d94",
+      "formal_fragment": "tensor_skeleton_plus_algebra_leaf",
+      "trust_boundary": "level_B_tensor_skeleton_plus_algebra_leaf_replay",
+      "notes": "Nonzero connection with zero curvature witness."
+    },
+    {
+      "kind": "zero_certificate",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "object_signature": {
+        "geometry": "flat de Sitter FLRW",
+        "tensor": "covariant divergence of Einstein tensor",
+        "component": "nabla_mu G^{mu0}",
+        "coordinate_chart": "cosmic time",
+        "index_convention": "EML-GR v0.44 selected component convention",
+        "structural_zero": false
+      },
+      "assumptions": [
+        "H > 0",
+        "t real",
+        "a(t)=exp(H*t)"
+      ],
+      "domain": {
+        "domain_id": "domain.flrw.de_sitter_real",
+        "conditions": [
+          "H > 0",
+          "t real"
+        ],
+        "side_condition_refs": [
+          "DOM.REAL_BRANCH"
+        ]
+      },
+      "normalized_obligation": {
+        "schema_major": "1.2",
+        "kind": "zero_certificate",
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "lhs_expr": "3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+        "target_normal_form": "0",
+        "required_rule_classes": [
+          "algebra",
+          "domain",
+          "tensor_definition",
+          "tensor_identity"
+        ],
+        "side_condition_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "formal_fragment": "tensor_skeleton_plus_algebra_leaf"
+      },
+      "routes": [
+        {
+          "route_id": "flrw_route_A_expand_then_cancel",
+          "route_kind": "identity_first",
+          "steps": [
+            {
+              "step_id": "A1",
+              "rule_id": "TID.CONTRACTED_BIANCHI",
+              "rule_class": "tensor_identity",
+              "before_expr": "3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Contracted Bianchi component exported to algebra leaf."
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "ALG.EXP_CANCEL",
+              "rule_class": "algebra",
+              "before_expr": "3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "9*H**3 - 9*H**3",
+              "side_conditions": [
+                "H real",
+                "t real"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "A3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "9*H**3 - 9*H**3",
+              "after_expr": "0",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Expand divergence, cancel exponential factors, then cancel terms.",
+          "raw_trace_hash": "812578f270cd652c"
+        },
+        {
+          "route_id": "flrw_route_B_factor_first",
+          "route_kind": "factored",
+          "steps": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.COVARIANT_DIVERGENCE",
+              "rule_class": "tensor_definition",
+              "before_expr": "3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Covariant divergence exported to algebra leaf."
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "ALG.MUL_ASSOC_COMM",
+              "rule_class": "algebra",
+              "before_expr": "3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "9*H**3*(1 - exp(2*H*t)*exp(-2*H*t))",
+              "side_conditions": [
+                "H real",
+                "t real"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.EXP_CANCEL",
+              "rule_class": "algebra",
+              "before_expr": "9*H**3*(1 - exp(2*H*t)*exp(-2*H*t))",
+              "after_expr": "9*H**3*(1-1)",
+              "side_conditions": [
+                "real branch"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "B4",
+              "rule_id": "ALG.MUL_ZERO",
+              "rule_class": "algebra",
+              "before_expr": "9*H**3*(1-1)",
+              "after_expr": "0",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Factor first, then use exp cancellation.",
+          "raw_trace_hash": "43ec0dd0687e1fbc"
+        }
+      ],
+      "normalized_hash": "fcca5fdf44e11ef8",
+      "formal_fragment": "tensor_skeleton_plus_algebra_leaf",
+      "trust_boundary": "level_B_tensor_skeleton_plus_algebra_leaf_replay",
+      "notes": "Contracted Bianchi selected zero forest."
+    },
+    {
+      "kind": "zero_certificate",
+      "claim_id": "zero.schwarzschild.ricci_channel_pair",
+      "object_signature": {
+        "geometry": "Schwarzschild exterior",
+        "tensor": "Ricci",
+        "component": "selected Ricci-channel pair",
+        "coordinate_chart": "Schwarzschild coordinates",
+        "index_convention": "EML-GR v0.44 selected component convention",
+        "structural_zero": false
+      },
+      "assumptions": [
+        "M > 0",
+        "r > 2*M"
+      ],
+      "domain": {
+        "domain_id": "domain.schwarzschild.exterior",
+        "conditions": [
+          "M > 0",
+          "r > 2*M"
+        ],
+        "side_condition_refs": [
+          "DOM.NONZERO_DENOMINATOR",
+          "DOM.POSITIVE_COORDINATE"
+        ]
+      },
+      "normalized_obligation": {
+        "schema_major": "1.2",
+        "kind": "zero_certificate",
+        "claim_id": "zero.schwarzschild.ricci_channel_pair",
+        "lhs_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+        "target_normal_form": "0",
+        "required_rule_classes": [
+          "algebra",
+          "domain",
+          "tensor_definition"
+        ],
+        "side_condition_refs": [
+          "DOM.NONZERO_DENOMINATOR",
+          "DOM.POSITIVE_COORDINATE"
+        ],
+        "formal_fragment": "elementary_algebra_zero"
+      },
+      "routes": [
+        {
+          "route_id": "schwarzschild_route_A_direct_pair",
+          "route_kind": "direct",
+          "steps": [
+            {
+              "step_id": "A1",
+              "rule_id": "TDEF.RICCI_CONTRACTION",
+              "rule_class": "tensor_definition",
+              "before_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "after_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Selected Ricci-channel pair exported to scalar leaf."
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "ALG.COMMON_DENOM_CANCEL",
+              "rule_class": "algebra",
+              "before_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "after_expr": "0",
+              "side_conditions": [
+                "M>0",
+                "r>2*M",
+                "r**2*(r-2*M) != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Direct common-denominator cancellation.",
+          "raw_trace_hash": "b9b67cf777afdd2b"
+        },
+        {
+          "route_id": "schwarzschild_route_B_numerator_zero",
+          "route_kind": "factored",
+          "steps": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.RICCI_CONTRACTION",
+              "rule_class": "tensor_definition",
+              "before_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "after_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Same selected Ricci-channel pair."
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "ALG.COMMON_DENOM_CANCEL",
+              "rule_class": "algebra",
+              "before_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "after_expr": "(2*M - 2*M)/(r**2*(r-2*M))",
+              "side_conditions": [
+                "M>0",
+                "r>2*M",
+                "r**2*(r-2*M) != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "(2*M - 2*M)/(r**2*(r-2*M))",
+              "after_expr": "0",
+              "side_conditions": [
+                "r**2*(r-2*M) != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Move to numerator zero first, then cancel.",
+          "raw_trace_hash": "78b0315d03a2ee98"
+        }
+      ],
+      "normalized_hash": "963d459cf28463e9",
+      "formal_fragment": "elementary_algebra_zero",
+      "trust_boundary": "level_B_tensor_skeleton_plus_algebra_leaf_replay",
+      "notes": "Representative Ricci-channel cancellation in exterior domain."
+    },
+    {
+      "kind": "zero_certificate",
+      "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+      "object_signature": {
+        "geometry": "pp-wave harmonic profile",
+        "tensor": "Ricci",
+        "component": "R_uu",
+        "coordinate_chart": "Brinkmann",
+        "index_convention": "EML-GR v0.44 selected component convention",
+        "structural_zero": false
+      },
+      "assumptions": [
+        "A real",
+        "k real",
+        "u,x,y real",
+        "H=A*exp(k*u)*(x**2-y**2)"
+      ],
+      "domain": {
+        "domain_id": "domain.ppwave.real_harmonic_profile",
+        "conditions": [
+          "A real",
+          "k real",
+          "u,x,y real"
+        ],
+        "side_condition_refs": [
+          "DOM.REAL_BRANCH"
+        ]
+      },
+      "normalized_obligation": {
+        "schema_major": "1.2",
+        "kind": "zero_certificate",
+        "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+        "lhs_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+        "target_normal_form": "0",
+        "required_rule_classes": [
+          "algebra",
+          "calculus",
+          "domain",
+          "tensor_definition"
+        ],
+        "side_condition_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "formal_fragment": "tensor_skeleton_plus_algebra_leaf"
+      },
+      "routes": [
+        {
+          "route_id": "ppwave_route_A_second_derivatives",
+          "route_kind": "definition_first",
+          "steps": [
+            {
+              "step_id": "A1",
+              "rule_id": "TDEF.PPWAVE_RICCI_UU",
+              "rule_class": "tensor_definition",
+              "before_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "after_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "pp-wave Ricci formula exported to scalar leaf."
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "CALC.SECOND_DIFF_QUADRATIC",
+              "rule_class": "calculus",
+              "before_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "after_expr": "-1/2*(2*A*exp(k*u) - 2*A*exp(k*u))",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "A3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "-1/2*(2*A*exp(k*u) - 2*A*exp(k*u))",
+              "after_expr": "0",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Differentiate transverse quadratic profile and cancel.",
+          "raw_trace_hash": "8df31e322084cf0e"
+        },
+        {
+          "route_id": "ppwave_route_B_harmonic_laplacian",
+          "route_kind": "factored",
+          "steps": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.PPWAVE_RICCI_UU",
+              "rule_class": "tensor_definition",
+              "before_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "after_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Same pp-wave Ricci formula."
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "CALC.SECOND_DIFF_QUADRATIC",
+              "rule_class": "calculus",
+              "before_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "after_expr": "-A*exp(k*u)*(1 - 1)",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.MUL_ZERO",
+              "rule_class": "algebra",
+              "before_expr": "-A*exp(k*u)*(1 - 1)",
+              "after_expr": "0",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Use transverse harmonic Laplacian form.",
+          "raw_trace_hash": "52ceb8d349d74b9e"
+        }
+      ],
+      "normalized_hash": "3a4ff980c09752b5",
+      "formal_fragment": "tensor_skeleton_plus_algebra_leaf",
+      "trust_boundary": "level_B_tensor_skeleton_plus_algebra_leaf_replay",
+      "notes": "Ricci-flatness from transverse harmonic profile."
+    }
+  ]
+}

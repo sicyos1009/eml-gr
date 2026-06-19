@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eml-gr.local/schemas/zero_certificate_typed_dependency_flow_extension_v0_9.json",
+  "title": "Zero certificate typed dependency-flow extension v0.9",
+  "description": "Content-level extension for typed dependency-flow edges over named tensor subleaves. This schema is intentionally partial and complements zero_certificate_schema_v1_2 plus v0.5-v0.8 extensions.",
+  "type": "object",
+  "required": [
+    "typed_dependency_flow"
+  ],
+  "properties": {
+    "typed_dependency_flow": {
+      "type": "object",
+      "required": [
+        "profile",
+        "flow_id",
+        "claim_id",
+        "root_subleaves",
+        "sink_subleaves",
+        "topological_order",
+        "typed_dependency_edges",
+        "flow_hash"
+      ],
+      "properties": {
+        "profile": {
+          "const": "zf_typed_dependency_flow_v1"
+        },
+        "flow_id": {
+          "type": "string"
+        },
+        "claim_id": {
+          "type": "string"
+        },
+        "root_subleaves": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sink_subleaves": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "topological_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "typed_dependency_edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "edge_id",
+              "profile",
+              "source",
+              "target",
+              "type_flow",
+              "scope",
+              "edge_hash"
+            ],
+            "properties": {
+              "edge_id": {
+                "type": "string"
+              },
+              "profile": {
+                "const": "zf_typed_dependency_edge_v1"
+              },
+              "source": {
+                "$ref": "#/$defs/endpoint"
+              },
+              "target": {
+                "$ref": "#/$defs/endpoint"
+              },
+              "type_flow": {
+                "type": "object",
+                "required": [
+                  "dependency_kind",
+                  "source_node_types",
+                  "source_provenance_classes",
+                  "target_node_types",
+                  "target_provenance_classes",
+                  "edge_semantic_role"
+                ]
+              },
+              "scope": {
+                "type": "object",
+                "required": [
+                  "coordinate_scope",
+                  "parameter_scope",
+                  "domain_refs"
+                ]
+              },
+              "edge_hash": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{16}$"
+              }
+            }
+          }
+        },
+        "flow_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "endpoint": {
+      "type": "object",
+      "required": [
+        "subleaf_id",
+        "payload_fields",
+        "subleaf_hash",
+        "rule_id",
+        "rule_class"
+      ],
+      "properties": {
+        "subleaf_id": {
+          "type": "string"
+        },
+        "payload_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "subleaf_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        },
+        "rule_id": {
+          "type": "string"
+        },
+        "rule_class": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

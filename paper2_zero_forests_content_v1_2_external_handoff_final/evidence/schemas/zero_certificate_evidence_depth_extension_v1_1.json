@@ -1,0 +1,14 @@
+{
+  "schema_id": "zero_certificate_evidence_depth_extension_v1_1",
+  "schema_version": "1.1.0-content-final",
+  "extends": "zero_certificate_content_freeze_extension_v1_0",
+  "required_top_level_fields": [
+    "content_extension",
+    "evidence_depth"
+  ],
+  "not_claimed": [
+    "real external CI run",
+    "proof assistant compilation",
+    "full tensor CAS replay"
+  ]
+}

@@ -1,0 +1,2 @@
+CMD: python scripts/tamper_suite_v1_1_evidence_depth.py --package-root ROOT --record external_ci/external_ci_results.v1.v1_1_local_dry_run.json --out outputs/tamper_suite_v1_1_evidence_depth_report.json
+RETURN: 0
