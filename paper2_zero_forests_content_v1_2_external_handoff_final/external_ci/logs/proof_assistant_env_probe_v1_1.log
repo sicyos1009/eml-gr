@@ -1,0 +1,11 @@
+CMD: /opt/pyvenv/bin/python /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/scripts/probe_proof_assistant_env_v1_1.py --out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/proof_assistant_env_probe_v1_1.json --md-out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/proof_assistant_env_probe_v1_1.md
+RETURN: 0
+STDOUT:
+{
+  "review_pass": true,
+  "compiled_pass": false,
+  "any_tool_found": false
+}
+
+STDERR:
+

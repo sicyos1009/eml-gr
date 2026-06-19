@@ -1,0 +1,29 @@
+{
+  "schema_id": "emlgr.api_contract_smoke.v1_1",
+  "review_pass": true,
+  "summary": {
+    "claims": 4,
+    "claim_ids": [
+      "zero.rindler.Riemann_eta_rho_eta_rho",
+      "zero.flrw.contracted_bianchi_divG0",
+      "zero.schwarzschild.ricci_channel_pair",
+      "zero.ppwave.Ricci_uu_harmonic_profile"
+    ],
+    "routes": 8,
+    "steps": 28,
+    "flrw_tensor_subleaves": 6,
+    "flrw_occurrence_maps": 14,
+    "flrw_ast_locators": 14,
+    "flrw_typed_provenance": 14,
+    "flrw_typed_dependency_edges": 10,
+    "sha256": "4cc5a30e7da1c6b6a006c541e07dedf72e272779540c056c8d7fcd76468f59de"
+  },
+  "expected_counts": {
+    "claims": 4,
+    "routes": 8,
+    "flrw_tensor_subleaves": 6,
+    "flrw_typed_dependency_edges": 10
+  },
+  "issues": [],
+  "issue_count": 0
+}

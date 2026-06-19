@@ -1,0 +1,37 @@
+{
+  "title": "External CI record validation v1.2",
+  "review_pass": false,
+  "require_real": false,
+  "real_external_run": false,
+  "jobs_checked": 5,
+  "job_classes": [
+    "emlgr_api_smoke",
+    "local_algebra_kernel",
+    "proof_assistant_compile_probe",
+    "tamper_suite",
+    "zero_replay"
+  ],
+  "jobs_ok_or_checked": 5,
+  "pass_compile_jobs": 0,
+  "gates": {
+    "XR1": true,
+    "XR2": true,
+    "XR3": true,
+    "XR4": true,
+    "XR5": true,
+    "XR6": false,
+    "XR7": true,
+    "XR8": true,
+    "XR9": true
+  },
+  "issue_count": 1,
+  "warning_count": 0,
+  "issues": [
+    {
+      "gate": "XR6",
+      "code": "RAW_LOG_HASH_MISMATCH",
+      "job_id": "zero_replay_v1_2"
+    }
+  ],
+  "warnings": []
+}

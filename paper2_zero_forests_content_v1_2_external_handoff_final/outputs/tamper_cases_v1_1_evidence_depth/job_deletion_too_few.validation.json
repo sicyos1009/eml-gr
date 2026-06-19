@@ -1,0 +1,34 @@
+{
+  "title": "External CI dry-run validation v1.1",
+  "review_pass": false,
+  "real_external_run": false,
+  "jobs_checked": 4,
+  "jobs_ok": 4,
+  "gates": {
+    "CI1": true,
+    "CI2": true,
+    "CI3": true,
+    "CI4": false,
+    "CI5": true,
+    "CI6": true,
+    "CI7": true,
+    "CI8": true
+  },
+  "issue_count": 2,
+  "warning_count": 0,
+  "issues": [
+    {
+      "gate": "CI4",
+      "code": "TOO_FEW_JOBS",
+      "jobs_checked": 4
+    },
+    {
+      "gate": "CI4",
+      "code": "REQUIRED_JOBS_MISSING",
+      "missing": [
+        "formal_seed_tool_probe"
+      ]
+    }
+  ],
+  "warnings": []
+}

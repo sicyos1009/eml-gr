@@ -1,0 +1,11 @@
+CMD: /opt/pyvenv/bin/python /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/scripts/external_ci_record_validator_v1_1.py --package-root /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final --record external_ci/external_ci_results.v1.v1_1_local_dry_run.json --out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/external_ci_ingestion_report_v1_1.json --md-out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/external_ci_ingestion_report_v1_1.md
+RETURN: 0
+STDOUT:
+{
+  "review_pass": true,
+  "jobs_checked": 5,
+  "issue_count": 0
+}
+
+STDERR:
+

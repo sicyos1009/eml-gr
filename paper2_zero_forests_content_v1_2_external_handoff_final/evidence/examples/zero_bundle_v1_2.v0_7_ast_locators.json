@@ -1,0 +1,1418 @@
+{
+  "schema_id": "eml-gr-zero-certificate-bundle",
+  "schema_version": "1.2.0-draft",
+  "artifact_version": "paper2-zero-forests-content-v0.7-ast-locators",
+  "created_utc": "2026-06-19T00:00:00Z",
+  "source_baseline": {
+    "project": "EML-GR Forest",
+    "baseline": "v0.44 submission preprint final package / v0.45 follow-up plan",
+    "wp": "WP10 Zero forest proof language expansion"
+  },
+  "normalization_policy": {
+    "raw_trace_hash": "sha256-16(canonical_json(route_id, route_kind, steps, final_expr, route_notes))",
+    "normalized_hash": "sha256-16(canonical_json(schema_major, kind, claim_id, object_signature, domain_signature, assumptions, zero_obligation, final_normal_form, rule_classes, side_condition_refs, formal_fragment))",
+    "canonical_json": "sort_keys=True,separators=(comma,colon),utf8",
+    "ignored_in_normalized_hash": [
+      "route_id",
+      "route_kind",
+      "steps",
+      "raw_trace_hash",
+      "route_notes",
+      "backend-specific rewrite order"
+    ]
+  },
+  "rule_registry": [
+    {
+      "rule_id": "ALG.ADD_ASSOC_COMM",
+      "rule_class": "algebra",
+      "description": "Canonical associativity/commutativity of addition.",
+      "replay_semantics": "checked by scalar normal form or simplify difference",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.MUL_ASSOC_COMM",
+      "rule_class": "algebra",
+      "description": "Canonical associativity/commutativity of multiplication.",
+      "replay_semantics": "checked by scalar normal form or simplify difference",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.ADD_INVERSE",
+      "rule_class": "algebra",
+      "description": "f + (-f) cancels to zero.",
+      "replay_semantics": "checked by simplify(before-after)==0",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.MUL_ZERO",
+      "rule_class": "algebra",
+      "description": "0*f or f*0 cancels to zero.",
+      "replay_semantics": "checked by simplify(before-after)==0",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.COMMON_DENOM_CANCEL",
+      "rule_class": "algebra",
+      "description": "a/d - a/d cancels under certified nonzero denominator.",
+      "replay_semantics": "checked by simplify(before-after)==0 and domain side condition",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.EXP_CANCEL",
+      "rule_class": "algebra",
+      "description": "exp(a)*exp(-a) cancels on the real branch.",
+      "replay_semantics": "checked by simplify(before-after)==0 with real branch side condition",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "ALG.RATIONAL_NORMAL_FORM",
+      "rule_class": "algebra",
+      "description": "Rational/Laurent expression normalization.",
+      "replay_semantics": "checked by simplify or Laurent seed normal form",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "CALC.DIFF_POWER",
+      "rule_class": "calculus",
+      "description": "Derivative of integer powers.",
+      "replay_semantics": "checked by sympy differentiation in exported scalar leaf",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "CALC.SECOND_DIFF_QUADRATIC",
+      "rule_class": "calculus",
+      "description": "Second derivative of x^2 is 2 and of -y^2 is -2.",
+      "replay_semantics": "checked by sympy differentiation in exported scalar leaf",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "CALC.DIFF_EXP_LINEAR",
+      "rule_class": "calculus",
+      "description": "Derivative of exp(k*u) is k*exp(k*u).",
+      "replay_semantics": "checked by sympy differentiation in exported scalar leaf",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "TDEF.RIEMANN_FROM_GAMMA",
+      "rule_class": "tensor_definition",
+      "description": "Riemann component exported from Christoffel data.",
+      "replay_semantics": "declared tensor step; algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TDEF.RICCI_CONTRACTION",
+      "rule_class": "tensor_definition",
+      "description": "Ricci component exported by contraction of Riemann.",
+      "replay_semantics": "declared tensor step; algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TDEF.COVARIANT_DIVERGENCE",
+      "rule_class": "tensor_definition",
+      "description": "Covariant divergence component expanded to scalar terms.",
+      "replay_semantics": "declared tensor step; algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TDEF.PPWAVE_RICCI_UU",
+      "rule_class": "tensor_definition",
+      "description": "pp-wave Ricci component R_uu = -1/2(H_xx+H_yy).",
+      "replay_semantics": "declared tensor step; algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TID.CONTRACTED_BIANCHI",
+      "rule_class": "tensor_identity",
+      "description": "Contracted Bianchi identity for Einstein tensor divergence.",
+      "replay_semantics": "declared tensor identity; selected algebra leaf checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "DOM.NONZERO_DENOMINATOR",
+      "rule_class": "domain",
+      "description": "Denominator is nonzero on the certified domain.",
+      "replay_semantics": "recorded as side condition; future domain checker verifies",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "DOM.POSITIVE_COORDINATE",
+      "rule_class": "domain",
+      "description": "Coordinate positivity condition such as rho>0 or r>2M.",
+      "replay_semantics": "recorded as side condition; future domain checker verifies",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "DOM.REAL_BRANCH",
+      "rule_class": "domain",
+      "description": "Real branch obligations for exp/log/sqrt simplification.",
+      "replay_semantics": "recorded as side condition; future branch checker verifies",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "CALC.DIFF_CONSTANT",
+      "rule_class": "calculus",
+      "description": "Derivative of an expression independent of the differentiation variable is zero.",
+      "replay_semantics": "checked by sympy differentiation/equality in exported scalar leaf",
+      "formal_fragment_eligible": true
+    },
+    {
+      "rule_id": "TDEF.FLRW_METRIC",
+      "rule_class": "tensor_definition",
+      "description": "Flat FLRW/de Sitter metric component leaf with a(t)=exp(H*t).",
+      "replay_semantics": "declared tensor subleaf; selected scalar consequences checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TDEF.FLRW_CONNECTION",
+      "rule_class": "tensor_definition",
+      "description": "Selected FLRW Christoffel components and trace leaves.",
+      "replay_semantics": "declared tensor subleaf; selected scalar consequences checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TDEF.FLRW_EINSTEIN_CONTRAVARIANT",
+      "rule_class": "tensor_definition",
+      "description": "Selected contravariant Einstein tensor leaves for de Sitter flat FLRW.",
+      "replay_semantics": "declared tensor subleaf; selected scalar consequences checked independently",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TDEF.FLRW_DIVERGENCE_EXPANSION",
+      "rule_class": "tensor_definition",
+      "description": "Selected expansion of ∇_μ G^{μ0} into named scalar subleaves.",
+      "replay_semantics": "declared tensor subleaf plus strict dependency/hash check",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TID.METRIC_COMPATIBILITY",
+      "rule_class": "tensor_identity",
+      "description": "Metric-compatibility rule ∇g=0 used as a named tensor identity boundary.",
+      "replay_semantics": "declared tensor identity boundary; not expanded by seed checker",
+      "formal_fragment_eligible": false
+    },
+    {
+      "rule_id": "TID.INDEX_SYMMETRY",
+      "rule_class": "tensor_identity",
+      "description": "Index symmetry / diagonal spatial multiplicity rule for selected FLRW components.",
+      "replay_semantics": "declared tensor identity boundary; multiplicity is checked in selected scalar subleaf",
+      "formal_fragment_eligible": false
+    }
+  ],
+  "certificates": [
+    {
+      "kind": "zero_certificate",
+      "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+      "object_signature": {
+        "geometry": "Rindler",
+        "tensor": "Riemann",
+        "component": "R^eta_{rho eta rho}",
+        "coordinate_chart": "Rindler wedge",
+        "index_convention": "EML-GR v0.44 selected component convention",
+        "structural_zero": false
+      },
+      "assumptions": [
+        "rho > 0"
+      ],
+      "domain": {
+        "domain_id": "domain.rindler.rho_positive",
+        "conditions": [
+          "rho > 0"
+        ],
+        "side_condition_refs": [
+          "DOM.POSITIVE_COORDINATE",
+          "DOM.NONZERO_DENOMINATOR"
+        ]
+      },
+      "normalized_obligation": {
+        "schema_major": "1.2",
+        "kind": "zero_certificate",
+        "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+        "lhs_expr": "-diff(1/rho, rho) - 1/rho**2",
+        "target_normal_form": "0",
+        "required_rule_classes": [
+          "algebra",
+          "calculus",
+          "domain",
+          "tensor_definition"
+        ],
+        "side_condition_refs": [
+          "DOM.NONZERO_DENOMINATOR",
+          "DOM.POSITIVE_COORDINATE"
+        ],
+        "formal_fragment": "tensor_skeleton_plus_algebra_leaf"
+      },
+      "routes": [
+        {
+          "route_id": "rindler_route_A_diff_then_cancel",
+          "route_kind": "definition_first",
+          "steps": [
+            {
+              "step_id": "A1",
+              "rule_id": "TDEF.RIEMANN_FROM_GAMMA",
+              "rule_class": "tensor_definition",
+              "before_expr": "-diff(1/rho, rho) - 1/rho**2",
+              "after_expr": "-diff(1/rho, rho) - 1/rho**2",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Selected Riemann component exported to scalar leaf."
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "CALC.DIFF_POWER",
+              "rule_class": "calculus",
+              "before_expr": "-diff(1/rho, rho) - 1/rho**2",
+              "after_expr": "1/rho**2 - 1/rho**2",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "A3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "1/rho**2 - 1/rho**2",
+              "after_expr": "0",
+              "side_conditions": [
+                "rho>0",
+                "rho**2 != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Differentiate the Christoffel leaf first, then cancel.",
+          "raw_trace_hash": "bd7990bdfb10fa14"
+        },
+        {
+          "route_id": "rindler_route_B_power_form",
+          "route_kind": "factored",
+          "steps": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.RIEMANN_FROM_GAMMA",
+              "rule_class": "tensor_definition",
+              "before_expr": "-diff(rho**(-1), rho) - rho**(-2)",
+              "after_expr": "-diff(rho**(-1), rho) - rho**(-2)",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Same scalar leaf after rewriting 1/rho as rho**(-1)."
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "CALC.DIFF_POWER",
+              "rule_class": "calculus",
+              "before_expr": "-diff(rho**(-1), rho) - rho**(-2)",
+              "after_expr": "-(-rho**(-2)) - rho**(-2)",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "-(-rho**(-2)) - rho**(-2)",
+              "after_expr": "0",
+              "side_conditions": [
+                "rho>0",
+                "rho**2 != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Rewrite reciprocal as a power, then cancel.",
+          "raw_trace_hash": "044afa190cec768b"
+        }
+      ],
+      "normalized_hash": "891eaefce7260d94",
+      "formal_fragment": "tensor_skeleton_plus_algebra_leaf",
+      "trust_boundary": "level_B_tensor_skeleton_plus_algebra_leaf_replay",
+      "notes": "Nonzero connection with zero curvature witness."
+    },
+    {
+      "kind": "zero_certificate",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "object_signature": "flat FLRW/de Sitter selected divergence ∇_μ G^{μ0}, a(t)=exp(H*t)",
+      "assumptions": [
+        "H>0",
+        "t real",
+        "spatial sections flat",
+        "a(t)=exp(H*t)",
+        "selected component nu=0"
+      ],
+      "domain": {
+        "domain_id": "D_FLRW_DE_SITTER_REAL_BRANCH_v0_5",
+        "conditions": [
+          "H>0",
+          "t real",
+          "real branch",
+          "exp(2*H*t)>0"
+        ],
+        "side_condition_refs": [
+          "DOM.REAL_BRANCH"
+        ]
+      },
+      "normalized_obligation": {
+        "schema_major": "1.2",
+        "kind": "zero_certificate",
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "lhs_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+        "target_normal_form": "0",
+        "required_rule_classes": [
+          "algebra",
+          "calculus",
+          "domain",
+          "tensor_definition",
+          "tensor_identity"
+        ],
+        "side_condition_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "formal_fragment": "algebraic_zero_leaf_with_named_tensor_subleaf_boundary"
+      },
+      "routes": [
+        {
+          "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+          "route_kind": "named_tensor_subleaves_then_algebra",
+          "steps": [
+            {
+              "step_id": "A1",
+              "rule_id": "TID.CONTRACTED_BIANCHI",
+              "rule_class": "tensor_identity",
+              "before_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_identity_plus_named_subleaf_check",
+              "trust_boundary": "declared_tensor_step",
+              "subleaf_refs": [
+                "flrw.divergence.expanded_nu0"
+              ],
+              "notes": "Contracted Bianchi component is represented by the selected nu=0 divergence subleaf.",
+              "occurrence_maps": [
+                {
+                  "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A1.occ01.full_divergence_scalar_export",
+                  "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+                  "step_id": "A1",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 0,
+                  "span_end": 69,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.divergence.expanded_nu0",
+                  "payload_field": "divergence_expanded_expr",
+                  "expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "",
+                  "context_after": "",
+                  "occurrence_hash": "5888195137036f1b",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.divergence.expanded_nu0",
+                      "payload_field": "divergence_expanded_expr"
+                    },
+                    "expected_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "c641a6526b60fee3"
+                  }
+                }
+              ]
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "TDEF.FLRW_DIVERGENCE_EXPANSION",
+              "rule_class": "tensor_definition",
+              "before_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_named_subleaf_check",
+              "trust_boundary": "declared_tensor_step",
+              "subleaf_refs": [
+                "flrw.connection.gamma_trace_0",
+                "flrw.connection.gamma_0ii",
+                "flrw.einstein.G_contra_00",
+                "flrw.einstein.G_contra_ii",
+                "flrw.divergence.expanded_nu0"
+              ],
+              "notes": "Named tensor leaves expose the scalar divergence expression without claiming full CAS verification.",
+              "occurrence_maps": [
+                {
+                  "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ01.full_divergence_scalar_export",
+                  "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+                  "step_id": "A2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 0,
+                  "span_end": 69,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.divergence.expanded_nu0",
+                  "payload_field": "divergence_expanded_expr",
+                  "expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "",
+                  "context_after": "",
+                  "occurrence_hash": "801c7ea2a1701817",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.divergence.expanded_nu0",
+                      "payload_field": "divergence_expanded_expr"
+                    },
+                    "expected_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "c641a6526b60fee3"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ02.partial_time_derivative",
+                  "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+                  "step_id": "A2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 0,
+                  "span_end": 15,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.divergence.expanded_nu0",
+                  "payload_field": "partial_G00_expr",
+                  "expr": "diff(3*H**2, t)",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "",
+                  "context_after": " + 3*H*3*H**",
+                  "occurrence_hash": "feb646d80b89909d",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[0]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.divergence.expanded_nu0",
+                      "payload_field": "partial_G00_expr"
+                    },
+                    "expected_expr": "diff(3*H**2, t)",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "9374cfb6031a0d74"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ03.connection_trace_factor",
+                  "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+                  "step_id": "A2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 18,
+                  "span_end": 21,
+                  "literal_occurrence_index_0_based": 1,
+                  "subleaf_id": "flrw.connection.gamma_trace_0",
+                  "payload_field": "gamma_trace_0_expr",
+                  "expr": "3*H",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "*H**2, t) + ",
+                  "context_after": "*3*H**2 + 3*",
+                  "occurrence_hash": "259940366c56367e",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[1].factors[0:2]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.connection.gamma_trace_0",
+                      "payload_field": "gamma_trace_0_expr"
+                    },
+                    "expected_expr": "3*H",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "9d39cec93054620e"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ04.einstein_00_factor",
+                  "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+                  "step_id": "A2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 22,
+                  "span_end": 28,
+                  "literal_occurrence_index_0_based": 1,
+                  "subleaf_id": "flrw.einstein.G_contra_00",
+                  "payload_field": "G_contra_00_expr",
+                  "expr": "3*H**2",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "2, t) + 3*H*",
+                  "context_after": " + 3*(H*exp(",
+                  "occurrence_hash": "f4fd137b2077495d",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[1].factors[2:4]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.einstein.G_contra_00",
+                      "payload_field": "G_contra_00_expr"
+                    },
+                    "expected_expr": "3*H**2",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "47c4eeba0992419b"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ05.spatial_connection_factor",
+                  "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+                  "step_id": "A2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 34,
+                  "span_end": 46,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.connection.gamma_0ii",
+                  "payload_field": "gamma_0ii_expr",
+                  "expr": "H*exp(2*H*t)",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "3*H**2 + 3*(",
+                  "context_after": ")*(-3*H**2*e",
+                  "occurrence_hash": "6e2d12c30fb3c333",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[2].factors[1:3]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.connection.gamma_0ii",
+                      "payload_field": "gamma_0ii_expr"
+                    },
+                    "expected_expr": "H*exp(2*H*t)",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "d4d89f2e9013d21e"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ06.spatial_einstein_factor",
+                  "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+                  "step_id": "A2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 49,
+                  "span_end": 68,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.einstein.G_contra_ii",
+                  "payload_field": "G_contra_ii_expr",
+                  "expr": "-3*H**2*exp(-2*H*t)",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "xp(2*H*t))*(",
+                  "context_after": ")",
+                  "occurrence_hash": "c44caa44aba0a920",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[2].factors[3:6]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.einstein.G_contra_ii",
+                      "payload_field": "G_contra_ii_expr"
+                    },
+                    "expected_expr": "-3*H**2*exp(-2*H*t)",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "5459d450a0c656c5"
+                  }
+                }
+              ]
+            },
+            {
+              "step_id": "A3",
+              "rule_id": "CALC.DIFF_CONSTANT",
+              "rule_class": "calculus",
+              "before_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "0 + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_difference",
+              "trust_boundary": "replayed_scalar_leaf",
+              "notes": "H is independent of t in this de Sitter seed, so diff(3*H**2,t)=0."
+            },
+            {
+              "step_id": "A4",
+              "rule_id": "ALG.EXP_CANCEL",
+              "rule_class": "algebra",
+              "before_expr": "0 + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "9*H**3 - 9*H**3",
+              "side_conditions": [
+                "real branch"
+              ],
+              "replay_method": "sympy_simplify_difference_plus_domain_ref",
+              "trust_boundary": "replayed_scalar_leaf",
+              "notes": "exp(2Ht)exp(-2Ht)=1 on the certified real branch."
+            },
+            {
+              "step_id": "A5",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "9*H**3 - 9*H**3",
+              "after_expr": "0",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_difference",
+              "trust_boundary": "replayed_scalar_leaf",
+              "notes": "Additive inverse cancellation."
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "FLRW v0.5 route A: named tensor subleaves expose the contracted-Bianchi scalar leaf, then scalar replay cancels it.",
+          "raw_trace_hash": "9fd0ce1aa190d4b9"
+        },
+        {
+          "route_id": "flrw_route_B_named_subleaves_factor_first",
+          "route_kind": "named_tensor_subleaves_factored_scalar_leaf",
+          "steps": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.COVARIANT_DIVERGENCE",
+              "rule_class": "tensor_definition",
+              "before_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_named_subleaf_check",
+              "trust_boundary": "declared_tensor_step",
+              "subleaf_refs": [
+                "flrw.divergence.expanded_nu0"
+              ],
+              "notes": "Selected covariant-divergence formula exported to the named divergence subleaf.",
+              "occurrence_maps": [
+                {
+                  "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B1.occ01.full_divergence_scalar_export",
+                  "route_id": "flrw_route_B_named_subleaves_factor_first",
+                  "step_id": "B1",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 0,
+                  "span_end": 69,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.divergence.expanded_nu0",
+                  "payload_field": "divergence_expanded_expr",
+                  "expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "",
+                  "context_after": "",
+                  "occurrence_hash": "8c2fbb39e4ea6832",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.divergence.expanded_nu0",
+                      "payload_field": "divergence_expanded_expr"
+                    },
+                    "expected_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "c641a6526b60fee3"
+                  }
+                }
+              ]
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "TDEF.FLRW_DIVERGENCE_EXPANSION",
+              "rule_class": "tensor_definition",
+              "before_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_named_subleaf_check",
+              "trust_boundary": "declared_tensor_step",
+              "subleaf_refs": [
+                "flrw.connection.gamma_trace_0",
+                "flrw.connection.gamma_0ii",
+                "flrw.einstein.G_contra_00",
+                "flrw.einstein.G_contra_ii",
+                "flrw.divergence.expanded_nu0"
+              ],
+              "notes": "The divergence subleaf is decomposed into selected connection and Einstein-tensor subleaves.",
+              "occurrence_maps": [
+                {
+                  "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ01.full_divergence_scalar_export",
+                  "route_id": "flrw_route_B_named_subleaves_factor_first",
+                  "step_id": "B2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 0,
+                  "span_end": 69,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.divergence.expanded_nu0",
+                  "payload_field": "divergence_expanded_expr",
+                  "expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "",
+                  "context_after": "",
+                  "occurrence_hash": "645a892f3cc454cd",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.divergence.expanded_nu0",
+                      "payload_field": "divergence_expanded_expr"
+                    },
+                    "expected_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "c641a6526b60fee3"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ02.partial_time_derivative",
+                  "route_id": "flrw_route_B_named_subleaves_factor_first",
+                  "step_id": "B2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 0,
+                  "span_end": 15,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.divergence.expanded_nu0",
+                  "payload_field": "partial_G00_expr",
+                  "expr": "diff(3*H**2, t)",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "",
+                  "context_after": " + 3*H*3*H**",
+                  "occurrence_hash": "3d4c00f3182ebb5f",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[0]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.divergence.expanded_nu0",
+                      "payload_field": "partial_G00_expr"
+                    },
+                    "expected_expr": "diff(3*H**2, t)",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "9374cfb6031a0d74"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ03.connection_trace_factor",
+                  "route_id": "flrw_route_B_named_subleaves_factor_first",
+                  "step_id": "B2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 18,
+                  "span_end": 21,
+                  "literal_occurrence_index_0_based": 1,
+                  "subleaf_id": "flrw.connection.gamma_trace_0",
+                  "payload_field": "gamma_trace_0_expr",
+                  "expr": "3*H",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "*H**2, t) + ",
+                  "context_after": "*3*H**2 + 3*",
+                  "occurrence_hash": "0f7903a3c35f6e06",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[1].factors[0:2]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.connection.gamma_trace_0",
+                      "payload_field": "gamma_trace_0_expr"
+                    },
+                    "expected_expr": "3*H",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "9d39cec93054620e"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ04.einstein_00_factor",
+                  "route_id": "flrw_route_B_named_subleaves_factor_first",
+                  "step_id": "B2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 22,
+                  "span_end": 28,
+                  "literal_occurrence_index_0_based": 1,
+                  "subleaf_id": "flrw.einstein.G_contra_00",
+                  "payload_field": "G_contra_00_expr",
+                  "expr": "3*H**2",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "2, t) + 3*H*",
+                  "context_after": " + 3*(H*exp(",
+                  "occurrence_hash": "940d49edbd6f35fc",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[1].factors[2:4]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.einstein.G_contra_00",
+                      "payload_field": "G_contra_00_expr"
+                    },
+                    "expected_expr": "3*H**2",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "47c4eeba0992419b"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ05.spatial_connection_factor",
+                  "route_id": "flrw_route_B_named_subleaves_factor_first",
+                  "step_id": "B2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 34,
+                  "span_end": 46,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.connection.gamma_0ii",
+                  "payload_field": "gamma_0ii_expr",
+                  "expr": "H*exp(2*H*t)",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "3*H**2 + 3*(",
+                  "context_after": ")*(-3*H**2*e",
+                  "occurrence_hash": "6e68a0657f0cf39b",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[2].factors[1:3]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.connection.gamma_0ii",
+                      "payload_field": "gamma_0ii_expr"
+                    },
+                    "expected_expr": "H*exp(2*H*t)",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "d4d89f2e9013d21e"
+                  }
+                },
+                {
+                  "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ06.spatial_einstein_factor",
+                  "route_id": "flrw_route_B_named_subleaves_factor_first",
+                  "step_id": "B2",
+                  "locator_kind": "ast_path_v1",
+                  "target_field": "after_expr",
+                  "span_start": 49,
+                  "span_end": 68,
+                  "literal_occurrence_index_0_based": 0,
+                  "subleaf_id": "flrw.einstein.G_contra_ii",
+                  "payload_field": "G_contra_ii_expr",
+                  "expr": "-3*H**2*exp(-2*H*t)",
+                  "patch_action": "observe_tensor_subleaf_occurrence",
+                  "replacement_direction": "subleaf_payload_to_route_expression",
+                  "context_before": "xp(2*H*t))*(",
+                  "context_after": ")",
+                  "occurrence_hash": "598f3df47a6136c1",
+                  "legacy_locator_kind": "literal_span_v1",
+                  "ast_locator": {
+                    "ast_profile": "zf_expr_ast_v1.python_infix_nary_add_mul",
+                    "target_field": "after_expr",
+                    "path": "$.terms[2].factors[3:6]",
+                    "path_semantics": "n-ary additive/multiplicative AST; whitespace and redundant parentheses are ignored; factor windows preserve declared order",
+                    "payload_binding": {
+                      "subleaf_id": "flrw.einstein.G_contra_ii",
+                      "payload_field": "G_contra_ii_expr"
+                    },
+                    "expected_expr": "-3*H**2*exp(-2*H*t)",
+                    "literal_span_v0_6_retained_for_audit_only": true,
+                    "ast_node_hash": "5459d450a0c656c5"
+                  }
+                }
+              ]
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "CALC.DIFF_CONSTANT",
+              "rule_class": "calculus",
+              "before_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "0 + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_difference",
+              "trust_boundary": "replayed_scalar_leaf",
+              "notes": "Remove constant time derivative term."
+            },
+            {
+              "step_id": "B4",
+              "rule_id": "ALG.EXP_CANCEL",
+              "rule_class": "algebra",
+              "before_expr": "0 + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+              "after_expr": "3*H*(3*H**2) + 3*H*(-3*H**2)",
+              "side_conditions": [
+                "real branch"
+              ],
+              "replay_method": "sympy_simplify_difference_plus_domain_ref",
+              "trust_boundary": "replayed_scalar_leaf",
+              "notes": "Cancel opposite exponential factors and expose common factor 3H."
+            },
+            {
+              "step_id": "B5",
+              "rule_id": "ALG.ADD_ASSOC_COMM",
+              "rule_class": "algebra",
+              "before_expr": "3*H*(3*H**2) + 3*H*(-3*H**2)",
+              "after_expr": "3*H*(3*H**2 - 3*H**2)",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_difference",
+              "trust_boundary": "replayed_scalar_leaf",
+              "notes": "Factor the common 3H multiplicative term."
+            },
+            {
+              "step_id": "B6",
+              "rule_id": "ALG.MUL_ZERO",
+              "rule_class": "algebra",
+              "before_expr": "3*H*(3*H**2 - 3*H**2)",
+              "after_expr": "0",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_difference",
+              "trust_boundary": "replayed_scalar_leaf",
+              "notes": "Zero factor annihilates product."
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "FLRW v0.5 route B: same named tensor subleaves, but scalar cancellation is routed through common-factor form.",
+          "raw_trace_hash": "2f240b78ac40a514"
+        }
+      ],
+      "normalized_hash": "6184214794d71f30",
+      "formal_fragment": "algebraic_zero_leaf_with_named_tensor_subleaf_boundary",
+      "trust_boundary": {
+        "level": "Level-B+ named tensor subleaf seed",
+        "trusted": [
+          "canonical JSON hashing",
+          "strict route-chain replay",
+          "selected scalar algebra/calculus replay",
+          "named tensor subleaf dependency/hash validation"
+        ],
+        "declared_not_fully_checked": [
+          "complete tensor CAS derivation of the Einstein tensor",
+          "full proof-assistant replay of the tensor identity",
+          "general semantic domain theorem proving"
+        ]
+      },
+      "notes": "v0.5 refines the FLRW contracted-Bianchi seed by naming the tensor subleaves feeding the scalar cancellation. The scalar leaf remains replayed; the tensor derivation remains a declared boundary.",
+      "tensor_subleaves": [
+        {
+          "subleaf_id": "flrw.metric.scale_factor",
+          "rule_id": "TDEF.FLRW_METRIC",
+          "rule_class": "tensor_definition",
+          "object": "flat FLRW metric",
+          "payload": {
+            "a_expr": "exp(H*t)",
+            "g_00": "-1",
+            "g_ii": "exp(2*H*t)",
+            "g_contra_00": "-1",
+            "g_contra_ii": "exp(-2*H*t)"
+          },
+          "dependencies": [],
+          "selected_check": "g_ii = a_expr**2 and g_contra_ii*g_ii = 1",
+          "trust_boundary": "declared_tensor_subleaf_plus_scalar_consistency_check",
+          "subleaf_hash": "122d9f04b8d15104"
+        },
+        {
+          "subleaf_id": "flrw.connection.gamma_trace_0",
+          "rule_id": "TDEF.FLRW_CONNECTION",
+          "rule_class": "tensor_definition",
+          "object": "sum_mu Gamma^mu_{mu0}",
+          "payload": {
+            "a_dot_over_a_expr": "diff(exp(H*t), t)/exp(H*t)",
+            "gamma_trace_0_expr": "3*H"
+          },
+          "dependencies": [
+            "flrw.metric.scale_factor"
+          ],
+          "selected_check": "gamma_trace_0_expr = 3*diff(a,t)/a = 3*H",
+          "trust_boundary": "declared_tensor_subleaf_plus_scalar_consistency_check",
+          "subleaf_hash": "65005ad0c40dae65"
+        },
+        {
+          "subleaf_id": "flrw.connection.gamma_0ii",
+          "rule_id": "TDEF.FLRW_CONNECTION",
+          "rule_class": "tensor_definition",
+          "object": "spatial diagonal Gamma^0_{ii}",
+          "payload": {
+            "gamma_0ii_expr": "H*exp(2*H*t)",
+            "spatial_multiplicity": 3
+          },
+          "dependencies": [
+            "flrw.metric.scale_factor"
+          ],
+          "selected_check": "Gamma^0_{ii} = a*a_dot = H*exp(2*H*t)",
+          "trust_boundary": "declared_tensor_subleaf_plus_scalar_consistency_check",
+          "subleaf_hash": "4874632c2f9a6f2a"
+        },
+        {
+          "subleaf_id": "flrw.einstein.G_contra_00",
+          "rule_id": "TDEF.FLRW_EINSTEIN_CONTRAVARIANT",
+          "rule_class": "tensor_definition",
+          "object": "contravariant Einstein tensor time component",
+          "payload": {
+            "G_contra_00_expr": "3*H**2"
+          },
+          "dependencies": [
+            "flrw.metric.scale_factor"
+          ],
+          "selected_check": "G^{00}=3*H**2 for flat de Sitter FLRW under selected sign convention",
+          "trust_boundary": "declared_tensor_subleaf",
+          "subleaf_hash": "555c0240b73d53bc"
+        },
+        {
+          "subleaf_id": "flrw.einstein.G_contra_ii",
+          "rule_id": "TDEF.FLRW_EINSTEIN_CONTRAVARIANT",
+          "rule_class": "tensor_definition",
+          "object": "contravariant Einstein tensor spatial diagonal component",
+          "payload": {
+            "G_contra_ii_expr": "-3*H**2*exp(-2*H*t)",
+            "spatial_multiplicity": 3
+          },
+          "dependencies": [
+            "flrw.metric.scale_factor"
+          ],
+          "selected_check": "G^{ii}=-3*H**2*exp(-2*H*t) for each diagonal spatial component",
+          "trust_boundary": "declared_tensor_subleaf",
+          "subleaf_hash": "ec25ca8c8c61cad6"
+        },
+        {
+          "subleaf_id": "flrw.divergence.expanded_nu0",
+          "rule_id": "TDEF.FLRW_DIVERGENCE_EXPANSION",
+          "rule_class": "tensor_definition",
+          "object": "selected expansion of ∇_mu G^{mu0}",
+          "payload": {
+            "partial_G00_expr": "diff(3*H**2, t)",
+            "gamma_trace_term_expr": "3*H*3*H**2",
+            "spatial_connection_term_expr": "3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+            "divergence_expanded_expr": "diff(3*H**2, t) + 3*H*3*H**2 + 3*(H*exp(2*H*t))*(-3*H**2*exp(-2*H*t))",
+            "expected_normal_form": "0"
+          },
+          "dependencies": [
+            "flrw.connection.gamma_trace_0",
+            "flrw.connection.gamma_0ii",
+            "flrw.einstein.G_contra_00",
+            "flrw.einstein.G_contra_ii"
+          ],
+          "selected_check": "divergence_expanded_expr equals partial_G00 + gamma_trace_0*G00 + 3*gamma_0ii*Gii and simplifies to zero",
+          "trust_boundary": "declared_tensor_subleaf_plus_scalar_consistency_check",
+          "subleaf_hash": "f81dcf9cc627187f"
+        }
+      ],
+      "tensor_subleaf_policy": {
+        "subleaf_hash": "sha256-16(canonical_json(subleaf without subleaf_hash))",
+        "ordered_dependency_policy": "dependencies must refer to existing subleaf_id entries; the checker validates required FLRW dependency edges",
+        "claim_scope": "selected component nu=0 only; not a full tensor CAS proof"
+      },
+      "occurrence_map_policy": {
+        "policy_id": "literal_span_v1",
+        "locator_kind": "literal span plus 0-based occurrence index",
+        "hash_policy": "sha256-16(canonical_json(occurrence map without occurrence_hash))",
+        "claim_scope": "locates selected scalar exports inside declared tensor route steps; does not prove full tensor derivation"
+      }
+    },
+    {
+      "kind": "zero_certificate",
+      "claim_id": "zero.schwarzschild.ricci_channel_pair",
+      "object_signature": {
+        "geometry": "Schwarzschild exterior",
+        "tensor": "Ricci",
+        "component": "selected Ricci-channel pair",
+        "coordinate_chart": "Schwarzschild coordinates",
+        "index_convention": "EML-GR v0.44 selected component convention",
+        "structural_zero": false
+      },
+      "assumptions": [
+        "M > 0",
+        "r > 2*M"
+      ],
+      "domain": {
+        "domain_id": "domain.schwarzschild.exterior",
+        "conditions": [
+          "M > 0",
+          "r > 2*M"
+        ],
+        "side_condition_refs": [
+          "DOM.NONZERO_DENOMINATOR",
+          "DOM.POSITIVE_COORDINATE"
+        ]
+      },
+      "normalized_obligation": {
+        "schema_major": "1.2",
+        "kind": "zero_certificate",
+        "claim_id": "zero.schwarzschild.ricci_channel_pair",
+        "lhs_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+        "target_normal_form": "0",
+        "required_rule_classes": [
+          "algebra",
+          "domain",
+          "tensor_definition"
+        ],
+        "side_condition_refs": [
+          "DOM.NONZERO_DENOMINATOR",
+          "DOM.POSITIVE_COORDINATE"
+        ],
+        "formal_fragment": "elementary_algebra_zero"
+      },
+      "routes": [
+        {
+          "route_id": "schwarzschild_route_A_direct_pair",
+          "route_kind": "direct",
+          "steps": [
+            {
+              "step_id": "A1",
+              "rule_id": "TDEF.RICCI_CONTRACTION",
+              "rule_class": "tensor_definition",
+              "before_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "after_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Selected Ricci-channel pair exported to scalar leaf."
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "ALG.COMMON_DENOM_CANCEL",
+              "rule_class": "algebra",
+              "before_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "after_expr": "0",
+              "side_conditions": [
+                "M>0",
+                "r>2*M",
+                "r**2*(r-2*M) != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Direct common-denominator cancellation.",
+          "raw_trace_hash": "b9b67cf777afdd2b"
+        },
+        {
+          "route_id": "schwarzschild_route_B_numerator_zero",
+          "route_kind": "factored",
+          "steps": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.RICCI_CONTRACTION",
+              "rule_class": "tensor_definition",
+              "before_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "after_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Same selected Ricci-channel pair."
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "ALG.COMMON_DENOM_CANCEL",
+              "rule_class": "algebra",
+              "before_expr": "2*M/(r**2*(r-2*M)) - 2*M/(r**2*(r-2*M))",
+              "after_expr": "(2*M - 2*M)/(r**2*(r-2*M))",
+              "side_conditions": [
+                "M>0",
+                "r>2*M",
+                "r**2*(r-2*M) != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "(2*M - 2*M)/(r**2*(r-2*M))",
+              "after_expr": "0",
+              "side_conditions": [
+                "r**2*(r-2*M) != 0"
+              ],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Move to numerator zero first, then cancel.",
+          "raw_trace_hash": "78b0315d03a2ee98"
+        }
+      ],
+      "normalized_hash": "963d459cf28463e9",
+      "formal_fragment": "elementary_algebra_zero",
+      "trust_boundary": "level_B_tensor_skeleton_plus_algebra_leaf_replay",
+      "notes": "Representative Ricci-channel cancellation in exterior domain."
+    },
+    {
+      "kind": "zero_certificate",
+      "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+      "object_signature": {
+        "geometry": "pp-wave harmonic profile",
+        "tensor": "Ricci",
+        "component": "R_uu",
+        "coordinate_chart": "Brinkmann",
+        "index_convention": "EML-GR v0.44 selected component convention",
+        "structural_zero": false
+      },
+      "assumptions": [
+        "A real",
+        "k real",
+        "u,x,y real",
+        "H=A*exp(k*u)*(x**2-y**2)"
+      ],
+      "domain": {
+        "domain_id": "domain.ppwave.real_harmonic_profile",
+        "conditions": [
+          "A real",
+          "k real",
+          "u,x,y real"
+        ],
+        "side_condition_refs": [
+          "DOM.REAL_BRANCH"
+        ]
+      },
+      "normalized_obligation": {
+        "schema_major": "1.2",
+        "kind": "zero_certificate",
+        "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+        "lhs_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+        "target_normal_form": "0",
+        "required_rule_classes": [
+          "algebra",
+          "calculus",
+          "domain",
+          "tensor_definition"
+        ],
+        "side_condition_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "formal_fragment": "tensor_skeleton_plus_algebra_leaf"
+      },
+      "routes": [
+        {
+          "route_id": "ppwave_route_A_second_derivatives",
+          "route_kind": "definition_first",
+          "steps": [
+            {
+              "step_id": "A1",
+              "rule_id": "TDEF.PPWAVE_RICCI_UU",
+              "rule_class": "tensor_definition",
+              "before_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "after_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "pp-wave Ricci formula exported to scalar leaf."
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "CALC.SECOND_DIFF_QUADRATIC",
+              "rule_class": "calculus",
+              "before_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "after_expr": "-1/2*(2*A*exp(k*u) - 2*A*exp(k*u))",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "A3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "rule_class": "algebra",
+              "before_expr": "-1/2*(2*A*exp(k*u) - 2*A*exp(k*u))",
+              "after_expr": "0",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Differentiate transverse quadratic profile and cancel.",
+          "raw_trace_hash": "8df31e322084cf0e"
+        },
+        {
+          "route_id": "ppwave_route_B_harmonic_laplacian",
+          "route_kind": "factored",
+          "steps": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.PPWAVE_RICCI_UU",
+              "rule_class": "tensor_definition",
+              "before_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "after_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "side_conditions": [],
+              "replay_method": "declared_tensor_rule_plus_algebra_leaf",
+              "trust_boundary": "declared_tensor_step",
+              "notes": "Same pp-wave Ricci formula."
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "CALC.SECOND_DIFF_QUADRATIC",
+              "rule_class": "calculus",
+              "before_expr": "-1/2*(diff(A*exp(k*u)*(x**2-y**2), x, 2) + diff(A*exp(k*u)*(x**2-y**2), y, 2))",
+              "after_expr": "-A*exp(k*u)*(1 - 1)",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.MUL_ZERO",
+              "rule_class": "algebra",
+              "before_expr": "-A*exp(k*u)*(1 - 1)",
+              "after_expr": "0",
+              "side_conditions": [],
+              "replay_method": "sympy_simplify_zero_difference",
+              "trust_boundary": "checked_algebra_leaf",
+              "notes": ""
+            }
+          ],
+          "final_expr": "0",
+          "route_notes": "Use transverse harmonic Laplacian form.",
+          "raw_trace_hash": "52ceb8d349d74b9e"
+        }
+      ],
+      "normalized_hash": "3a4ff980c09752b5",
+      "formal_fragment": "tensor_skeleton_plus_algebra_leaf",
+      "trust_boundary": "level_B_tensor_skeleton_plus_algebra_leaf_replay",
+      "notes": "Ricci-flatness from transverse harmonic profile."
+    }
+  ],
+  "content_extension": {
+    "extension_id": "zero_certificate_ast_path_locator_extension",
+    "extension_version": "0.7.0-content",
+    "base_extension": "v0.6 occurrence-level literal-span maps",
+    "description": "Adds AST-path occurrence locators that replace fragile literal spans as the replay authority while retaining literal spans as diagnostic breadcrumbs.",
+    "scope": [
+      "FLRW contracted Bianchi selected tensor-subleaf route",
+      "AST path validation",
+      "benign whitespace/parentheses robustness",
+      "malicious AST-path tamper rejection"
+    ]
+  }
+}

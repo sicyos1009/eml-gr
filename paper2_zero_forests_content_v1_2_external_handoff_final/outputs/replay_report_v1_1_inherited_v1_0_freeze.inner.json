@@ -1,0 +1,163 @@
+{
+  "title": "Paper2 Zero Forests v1.0 freeze-final replay report",
+  "review_pass": true,
+  "strict_level": "Level-B+ content freeze over v0.9 typed dependency flow",
+  "canonical_bundle": "evidence\\examples\\zero_bundle_v1_2.v1_0_freeze.json",
+  "canonical_bundle_sha256": "34df90bc549f898c829e6f3c397dc618d25896d5ce0834a2f78e4b1ee82cc51e",
+  "counts": {
+    "zero_claims": 4,
+    "routes": 8,
+    "steps": 28,
+    "routes_ok": 8,
+    "steps_ok": 28,
+    "raw_hashes_recomputed_ok": 8,
+    "normalized_hashes_recomputed_ok": 4,
+    "unique_normalized_certificates": 4,
+    "tensor_subleaves": 6,
+    "ast_locators": 14,
+    "ast_locators_checked_ok": 14,
+    "tensor_steps_with_ast_locators": 4,
+    "typed_provenance": 14,
+    "typed_provenance_checked_ok": 14,
+    "tensor_steps_with_typed_provenance": 4,
+    "typed_dependency_edges": 10,
+    "typed_dependency_edges_checked_ok": 10
+  },
+  "gates": {
+    "SCHEMA": true,
+    "RC1": true,
+    "RC2": true,
+    "RC3": true,
+    "RC4": true,
+    "RC5": true,
+    "RC6": true,
+    "RC7": true,
+    "RC8": true,
+    "RC9": true,
+    "AP1": true,
+    "AP2": true,
+    "AP3": true,
+    "AP4": true,
+    "AP5": true,
+    "AP6": true,
+    "AP7": true,
+    "TP1": true,
+    "TP2": true,
+    "TP3": true,
+    "TP4": true,
+    "TP5": true,
+    "TP6": true,
+    "TP7": true,
+    "TP8": true,
+    "TP9": true,
+    "DF1": true,
+    "DF2": true,
+    "DF3": true,
+    "DF4": true,
+    "DF5": true,
+    "DF6": true,
+    "DF7": true,
+    "DF8": true,
+    "DF9": true,
+    "DF10": true,
+    "FZ1_no_manuscript_dir": true,
+    "FZ2_bundle_hash_matches_manifest": true,
+    "FZ3_inner_replay_pass": true,
+    "FZ4_canonical_flrw_route_present": true,
+    "FZ5_level_b_plus_layers_present": true,
+    "FZ6_guardrail_docs_present": true
+  },
+  "freeze_gates": {
+    "FZ1_no_manuscript_dir": true,
+    "FZ2_bundle_hash_matches_manifest": true,
+    "FZ3_inner_replay_pass": true,
+    "FZ4_canonical_flrw_route_present": true,
+    "FZ5_level_b_plus_layers_present": true,
+    "FZ6_guardrail_docs_present": true
+  },
+  "issue_count": 0,
+  "warning_count": 10,
+  "issues": [],
+  "warnings": [
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+      "route_id": "rindler_route_A_diff_then_cancel",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+      "route_id": "rindler_route_B_power_form",
+      "step_id": "B1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+      "step_id": "A2"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_B_named_subleaves_factor_first",
+      "step_id": "B1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_B_named_subleaves_factor_first",
+      "step_id": "B2"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.schwarzschild.ricci_channel_pair",
+      "route_id": "schwarzschild_route_A_direct_pair",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.schwarzschild.ricci_channel_pair",
+      "route_id": "schwarzschild_route_B_numerator_zero",
+      "step_id": "B1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+      "route_id": "ppwave_route_A_second_derivatives",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+      "route_id": "ppwave_route_B_harmonic_laplacian",
+      "step_id": "B1"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+CMD: /opt/pyvenv/bin/python /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/scripts/zero_replay_checker_v0_9_typeflow.py --bundle /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/evidence/examples/zero_bundle_v1_2.v1_1_evidence_depth.json --out /mnt/data/paper2_zero_forests_content_v1_1_evidence_depth_final/outputs/replay_report_v1_1_core_typeflow.json
+RETURN: 0
+STDOUT:
+{
+  "review_pass": true,
+  "counts": {
+    "zero_claims": 4,
+    "routes": 8,
+    "steps": 28,
+    "routes_ok": 8,
+    "steps_ok": 28,
+    "raw_hashes_recomputed_ok": 8,
+    "normalized_hashes_recomputed_ok": 4,
+    "unique_normalized_certificates": 4,
+    "tensor_subleaves": 6,
+    "ast_locators": 14,
+    "ast_locators_checked_ok": 14,
+    "tensor_steps_with_ast_locators": 4,
+    "typed_provenance": 14,
+    "typed_provenance_checked_ok": 14,
+    "tensor_steps_with_typed_provenance": 4,
+    "typed_dependency_edges": 10,
+    "typed_dependency_edges_checked_ok": 10
+  },
+  "typeflow_gates": {
+    "DF1": true,
+    "DF2": true,
+    "DF3": true,
+    "DF4": true,
+    "DF5": true,
+    "DF6": true,
+    "DF7": true,
+    "DF8": true,
+    "DF9": true,
+    "DF10": true
+  },
+  "issue_count": 0,
+  "warning_count": 10
+}
+
+STDERR:
+

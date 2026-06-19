@@ -1,0 +1,9 @@
+$ C:\Users\sicyo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe scripts/tamper_suite_v1_1_evidence_depth.py --package-root . --out outputs/tamper_suite_v1_2_payload_report.json
+
+[stdout]
+{"all_expectations_met": true, "malicious_cases_rejected": 8, "malicious_cases": 8}
+
+[stderr]
+
+[returncode]
+0

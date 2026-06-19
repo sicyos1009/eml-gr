@@ -1,0 +1,27 @@
+{
+  "title": "External CI dry-run validation v1.1",
+  "review_pass": false,
+  "real_external_run": false,
+  "jobs_checked": 5,
+  "jobs_ok": 5,
+  "gates": {
+    "CI1": true,
+    "CI2": true,
+    "CI3": true,
+    "CI4": true,
+    "CI5": true,
+    "CI6": false,
+    "CI7": true,
+    "CI8": true
+  },
+  "issue_count": 1,
+  "warning_count": 0,
+  "issues": [
+    {
+      "gate": "CI6",
+      "code": "RAW_LOG_HASH_MISMATCH",
+      "job_id": "zero_replay_v1_1_local"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,28 @@
+{
+  "title": "External CI dry-run validation v1.1",
+  "review_pass": false,
+  "real_external_run": false,
+  "jobs_checked": 5,
+  "jobs_ok": 5,
+  "gates": {
+    "CI1": true,
+    "CI2": true,
+    "CI3": false,
+    "CI4": true,
+    "CI5": true,
+    "CI6": true,
+    "CI7": true,
+    "CI8": true
+  },
+  "issue_count": 1,
+  "warning_count": 0,
+  "issues": [
+    {
+      "gate": "CI3",
+      "code": "BUNDLE_HASH_MISMATCH",
+      "reported": "0000000000000000000000000000000000000000000000000000000000000000",
+      "recomputed": "421f2bff0fc464c96e61bcdad45520b297e3500beab45bda9fc1c9375034acac"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,41 @@
+{
+  "title": "External CI dry-run validation v1.1",
+  "review_pass": false,
+  "real_external_run": true,
+  "jobs_checked": 5,
+  "jobs_ok": 5,
+  "gates": {
+    "CI1": true,
+    "CI2": false,
+    "CI3": true,
+    "CI4": true,
+    "CI5": true,
+    "CI6": true,
+    "CI7": true,
+    "CI8": true
+  },
+  "issue_count": 4,
+  "warning_count": 0,
+  "issues": [
+    {
+      "gate": "CI2",
+      "code": "MISSING_REAL_RUN_PROVENANCE",
+      "field": "repository"
+    },
+    {
+      "gate": "CI2",
+      "code": "MISSING_REAL_RUN_PROVENANCE",
+      "field": "commit_sha"
+    },
+    {
+      "gate": "CI2",
+      "code": "MISSING_REAL_RUN_PROVENANCE",
+      "field": "workflow_run_url"
+    },
+    {
+      "gate": "CI2",
+      "code": "BAD_COMMIT_SHA"
+    }
+  ],
+  "warnings": []
+}

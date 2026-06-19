@@ -1,0 +1,115 @@
+{
+  "schema_id": "tamper_suite_v1_2_external_handoff_report.v1",
+  "baseline_pass": true,
+  "total_cases": 13,
+  "malicious_cases": 12,
+  "malicious_cases_rejected": 12,
+  "all_expectations_met": true,
+  "cases": [
+    {
+      "case_id": "baseline_local_preflight",
+      "expected_pass": true,
+      "actual_pass": true,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\baseline_local_preflight.validation.json"
+    },
+    {
+      "case_id": "local_preflight_fails_require_real",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": true,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\local_preflight_fails_require_real.validation.json"
+    },
+    {
+      "case_id": "false_real_external_with_placeholders",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\false_real_external_with_placeholders.validation.json"
+    },
+    {
+      "case_id": "bad_commit_sha_for_real",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\bad_commit_sha_for_real.validation.json"
+    },
+    {
+      "case_id": "local_record_claims_compiled_pass_external",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\local_record_claims_compiled_pass_external.validation.json"
+    },
+    {
+      "case_id": "raw_log_hash_mutated",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\raw_log_hash_mutated.validation.json"
+    },
+    {
+      "case_id": "output_hash_mutated",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\output_hash_mutated.validation.json"
+    },
+    {
+      "case_id": "required_job_class_deleted",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\required_job_class_deleted.validation.json"
+    },
+    {
+      "case_id": "trust_level_mislabeled",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\trust_level_mislabeled.validation.json"
+    },
+    {
+      "case_id": "limitations_deleted",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\limitations_deleted.validation.json"
+    },
+    {
+      "case_id": "bad_job_status",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\bad_job_status.validation.json"
+    },
+    {
+      "case_id": "bundle_hash_mutated",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\bundle_hash_mutated.validation.json"
+    },
+    {
+      "case_id": "compile_external_without_compile_job",
+      "expected_pass": false,
+      "actual_pass": false,
+      "expectation_met": true,
+      "require_real": false,
+      "report": "outputs\\tamper_cases_v1_2_external_handoff\\compile_external_without_compile_job.validation.json"
+    }
+  ],
+  "review_pass": true
+}

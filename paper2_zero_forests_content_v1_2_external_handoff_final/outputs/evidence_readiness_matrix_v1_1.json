@@ -1,0 +1,18 @@
+{
+  "review_pass": true,
+  "channels": {
+    "core_replay": "pass",
+    "freeze_inheritance": "pass",
+    "external_ci": "dry_run_pass_only",
+    "proof_assistant": "probe_only_no_compile",
+    "local_algebra_kernel": "pass",
+    "emlgr_api": "smoke_pass"
+  },
+  "not_claimed": [
+    "real external CI run",
+    "Lean/Coq/Rocq compiled theorem",
+    "full tensor CAS verification",
+    "full componentwise Bianchi theorem",
+    "universal zero-decision procedure"
+  ]
+}

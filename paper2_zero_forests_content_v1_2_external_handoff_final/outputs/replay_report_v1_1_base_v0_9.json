@@ -1,0 +1,1425 @@
+{
+  "title": "Paper2 Zero Forests strict Level-B+ replay report v0.9 typed dependency flow",
+  "review_pass": true,
+  "strict_level": "Level-B+ named tensor subleaves plus AST-path locators plus typed provenance plus typed dependency flow",
+  "schema_version": "1.2.0-draft",
+  "artifact_version": "1.1.0-content-evidence-depth-final",
+  "content_extension": {
+    "extension_id": "zero_certificate_evidence_depth_extension",
+    "extension_version": "1.1.0-content-final",
+    "base_extension": "v1.0 content freeze",
+    "description": "Evidence-depth plumbing around the frozen Zero Forest bundle; no new proof object layer."
+  },
+  "counts": {
+    "zero_claims": 4,
+    "routes": 8,
+    "steps": 28,
+    "routes_ok": 8,
+    "steps_ok": 28,
+    "raw_hashes_recomputed_ok": 8,
+    "normalized_hashes_recomputed_ok": 4,
+    "unique_normalized_certificates": 4,
+    "tensor_subleaves": 6,
+    "ast_locators": 14,
+    "ast_locators_checked_ok": 14,
+    "tensor_steps_with_ast_locators": 4,
+    "typed_provenance": 14,
+    "typed_provenance_checked_ok": 14,
+    "tensor_steps_with_typed_provenance": 4,
+    "typed_dependency_edges": 10,
+    "typed_dependency_edges_checked_ok": 10
+  },
+  "gates": {
+    "SCHEMA": true,
+    "RC1": true,
+    "RC2": true,
+    "RC3": true,
+    "RC4": true,
+    "RC5": true,
+    "RC6": true,
+    "RC7": true,
+    "RC8": true,
+    "RC9": true,
+    "AP1": true,
+    "AP2": true,
+    "AP3": true,
+    "AP4": true,
+    "AP5": true,
+    "AP6": true,
+    "AP7": true,
+    "TP1": true,
+    "TP2": true,
+    "TP3": true,
+    "TP4": true,
+    "TP5": true,
+    "TP6": true,
+    "TP7": true,
+    "TP8": true,
+    "TP9": true,
+    "DF1": true,
+    "DF2": true,
+    "DF3": true,
+    "DF4": true,
+    "DF5": true,
+    "DF6": true,
+    "DF7": true,
+    "DF8": true,
+    "DF9": true,
+    "DF10": true
+  },
+  "issue_count": 0,
+  "warning_count": 10,
+  "issues": [],
+  "warnings": [
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+      "route_id": "rindler_route_A_diff_then_cancel",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+      "route_id": "rindler_route_B_power_form",
+      "step_id": "B1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+      "step_id": "A2"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_B_named_subleaves_factor_first",
+      "step_id": "B1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "route_id": "flrw_route_B_named_subleaves_factor_first",
+      "step_id": "B2"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.schwarzschild.ricci_channel_pair",
+      "route_id": "schwarzschild_route_A_direct_pair",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.schwarzschild.ricci_channel_pair",
+      "route_id": "schwarzschild_route_B_numerator_zero",
+      "step_id": "B1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+      "route_id": "ppwave_route_A_second_derivatives",
+      "step_id": "A1"
+    },
+    {
+      "severity": "warning",
+      "gate": "RC7",
+      "code": "DECLARED_TENSOR_BOUNDARY",
+      "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+      "route_id": "ppwave_route_B_harmonic_laplacian",
+      "step_id": "B1"
+    }
+  ],
+  "compression": {
+    "raw_route_count": 8,
+    "canonical_claim_count": 4,
+    "route_to_claim_compression": "8:4"
+  },
+  "certificate_reports": [
+    {
+      "claim_id": "zero.rindler.Riemann_eta_rho_eta_rho",
+      "normalized_hash_ok": true,
+      "classes_used": [
+        "algebra",
+        "calculus",
+        "tensor_definition"
+      ],
+      "required_rule_classes": [
+        "algebra",
+        "calculus",
+        "domain",
+        "tensor_definition"
+      ],
+      "domain_entailed_seed_conditions": [
+        "rho**2!=0",
+        "rho>0"
+      ],
+      "routes": [
+        {
+          "route_id": "rindler_route_A_diff_then_cancel",
+          "route_pass": true,
+          "raw_hash_ok": true,
+          "initial_ok": true,
+          "final_zero_ok": true,
+          "step_reports": [
+            {
+              "step_id": "A1",
+              "rule_id": "TDEF.RIEMANN_FROM_GAMMA",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "CALC.DIFF_POWER",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "A3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            }
+          ]
+        },
+        {
+          "route_id": "rindler_route_B_power_form",
+          "route_pass": true,
+          "raw_hash_ok": true,
+          "initial_ok": true,
+          "final_zero_ok": true,
+          "step_reports": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.RIEMANN_FROM_GAMMA",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "CALC.DIFF_POWER",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "normalized_hash_ok": true,
+      "classes_used": [
+        "algebra",
+        "calculus",
+        "tensor_definition",
+        "tensor_identity"
+      ],
+      "required_rule_classes": [
+        "algebra",
+        "calculus",
+        "domain",
+        "tensor_definition",
+        "tensor_identity"
+      ],
+      "domain_entailed_seed_conditions": [
+        "H real",
+        "H>0",
+        "Hreal",
+        "a(t)=exp(H*t)",
+        "exp(2*H*t)>0",
+        "real branch",
+        "realbranch",
+        "selectedcomponentnu=0",
+        "spatialsectionsflat",
+        "t real",
+        "treal"
+      ],
+      "routes": [
+        {
+          "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+          "route_pass": true,
+          "raw_hash_ok": true,
+          "initial_ok": true,
+          "final_zero_ok": true,
+          "step_reports": [
+            {
+              "step_id": "A1",
+              "rule_id": "TID.CONTRACTED_BIANCHI",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "TDEF.FLRW_DIVERGENCE_EXPANSION",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "A3",
+              "rule_id": "CALC.DIFF_CONSTANT",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "A4",
+              "rule_id": "ALG.EXP_CANCEL",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "A5",
+              "rule_id": "ALG.ADD_INVERSE",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            }
+          ]
+        },
+        {
+          "route_id": "flrw_route_B_named_subleaves_factor_first",
+          "route_pass": true,
+          "raw_hash_ok": true,
+          "initial_ok": true,
+          "final_zero_ok": true,
+          "step_reports": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.COVARIANT_DIVERGENCE",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "TDEF.FLRW_DIVERGENCE_EXPANSION",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "CALC.DIFF_CONSTANT",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B4",
+              "rule_id": "ALG.EXP_CANCEL",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B5",
+              "rule_id": "ALG.ADD_ASSOC_COMM",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B6",
+              "rule_id": "ALG.MUL_ZERO",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "zero.schwarzschild.ricci_channel_pair",
+      "normalized_hash_ok": true,
+      "classes_used": [
+        "algebra",
+        "tensor_definition"
+      ],
+      "required_rule_classes": [
+        "algebra",
+        "domain",
+        "tensor_definition"
+      ],
+      "domain_entailed_seed_conditions": [
+        "M>0",
+        "r**2*(r-2*M)!=0",
+        "r>2*M"
+      ],
+      "routes": [
+        {
+          "route_id": "schwarzschild_route_A_direct_pair",
+          "route_pass": true,
+          "raw_hash_ok": true,
+          "initial_ok": true,
+          "final_zero_ok": true,
+          "step_reports": [
+            {
+              "step_id": "A1",
+              "rule_id": "TDEF.RICCI_CONTRACTION",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "ALG.COMMON_DENOM_CANCEL",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            }
+          ]
+        },
+        {
+          "route_id": "schwarzschild_route_B_numerator_zero",
+          "route_pass": true,
+          "raw_hash_ok": true,
+          "initial_ok": true,
+          "final_zero_ok": true,
+          "step_reports": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.RICCI_CONTRACTION",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "ALG.COMMON_DENOM_CANCEL",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "claim_id": "zero.ppwave.Ricci_uu_harmonic_profile",
+      "normalized_hash_ok": true,
+      "classes_used": [
+        "algebra",
+        "calculus",
+        "tensor_definition"
+      ],
+      "required_rule_classes": [
+        "algebra",
+        "calculus",
+        "domain",
+        "tensor_definition"
+      ],
+      "domain_entailed_seed_conditions": [
+        "Areal",
+        "H=A*exp(k*u)*(x**2-y**2)",
+        "kreal",
+        "u,x,yreal"
+      ],
+      "routes": [
+        {
+          "route_id": "ppwave_route_A_second_derivatives",
+          "route_pass": true,
+          "raw_hash_ok": true,
+          "initial_ok": true,
+          "final_zero_ok": true,
+          "step_reports": [
+            {
+              "step_id": "A1",
+              "rule_id": "TDEF.PPWAVE_RICCI_UU",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "A2",
+              "rule_id": "CALC.SECOND_DIFF_QUADRATIC",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "A3",
+              "rule_id": "ALG.ADD_INVERSE",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            }
+          ]
+        },
+        {
+          "route_id": "ppwave_route_B_harmonic_laplacian",
+          "route_pass": true,
+          "raw_hash_ok": true,
+          "initial_ok": true,
+          "final_zero_ok": true,
+          "step_reports": [
+            {
+              "step_id": "B1",
+              "rule_id": "TDEF.PPWAVE_RICCI_UU",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B2",
+              "rule_id": "CALC.SECOND_DIFF_QUADRATIC",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            },
+            {
+              "step_id": "B3",
+              "rule_id": "ALG.MUL_ZERO",
+              "ok": true,
+              "diagnostic": "difference_normal_form=0"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "tensor_subleaf_reports": [
+    {
+      "claim_id": "zero.flrw.contracted_bianchi_divG0",
+      "subleaf_count": 6,
+      "checks": [
+        {
+          "check": "required_subleaves_present",
+          "ok": true,
+          "diagnostic": "missing=[]"
+        },
+        {
+          "check": "subleaf_hash::flrw.metric.scale_factor",
+          "ok": true,
+          "diagnostic": "reported=7495b23dec125c18, recomputed=7495b23dec125c18"
+        },
+        {
+          "check": "subleaf_hash::flrw.connection.gamma_trace_0",
+          "ok": true,
+          "diagnostic": "reported=f4ec227fb8169255, recomputed=f4ec227fb8169255"
+        },
+        {
+          "check": "dependency_exists::flrw.connection.gamma_trace_0->flrw.metric.scale_factor",
+          "ok": true,
+          "diagnostic": ""
+        },
+        {
+          "check": "subleaf_hash::flrw.connection.gamma_0ii",
+          "ok": true,
+          "diagnostic": "reported=2c5da7f8c1611c84, recomputed=2c5da7f8c1611c84"
+        },
+        {
+          "check": "dependency_exists::flrw.connection.gamma_0ii->flrw.metric.scale_factor",
+          "ok": true,
+          "diagnostic": ""
+        },
+        {
+          "check": "subleaf_hash::flrw.einstein.G_contra_00",
+          "ok": true,
+          "diagnostic": "reported=4765ad141e83c2b2, recomputed=4765ad141e83c2b2"
+        },
+        {
+          "check": "dependency_exists::flrw.einstein.G_contra_00->flrw.metric.scale_factor",
+          "ok": true,
+          "diagnostic": ""
+        },
+        {
+          "check": "subleaf_hash::flrw.einstein.G_contra_ii",
+          "ok": true,
+          "diagnostic": "reported=c078563c6d0a5ead, recomputed=c078563c6d0a5ead"
+        },
+        {
+          "check": "dependency_exists::flrw.einstein.G_contra_ii->flrw.metric.scale_factor",
+          "ok": true,
+          "diagnostic": ""
+        },
+        {
+          "check": "subleaf_hash::flrw.divergence.expanded_nu0",
+          "ok": true,
+          "diagnostic": "reported=232e2167ceeebc92, recomputed=232e2167ceeebc92"
+        },
+        {
+          "check": "dependency_exists::flrw.divergence.expanded_nu0->flrw.connection.gamma_trace_0",
+          "ok": true,
+          "diagnostic": ""
+        },
+        {
+          "check": "dependency_exists::flrw.divergence.expanded_nu0->flrw.connection.gamma_0ii",
+          "ok": true,
+          "diagnostic": ""
+        },
+        {
+          "check": "dependency_exists::flrw.divergence.expanded_nu0->flrw.einstein.G_contra_00",
+          "ok": true,
+          "diagnostic": ""
+        },
+        {
+          "check": "dependency_exists::flrw.divergence.expanded_nu0->flrw.einstein.G_contra_ii",
+          "ok": true,
+          "diagnostic": ""
+        },
+        {
+          "check": "divergence_required_dependencies",
+          "ok": true,
+          "diagnostic": "deps=['flrw.connection.gamma_0ii', 'flrw.connection.gamma_trace_0', 'flrw.einstein.G_contra_00', 'flrw.einstein.G_contra_ii']"
+        },
+        {
+          "check": "metric_gii_equals_a_squared",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "metric_inverse_spatial_diagonal",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "a_dot_over_a_equals_H",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "gamma_trace_0_equals_3H",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "gamma_0ii_selected_component",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "G_contra_00_selected_component",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "G_contra_ii_selected_component",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "divergence_expr_matches_named_subleaves",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "gamma_trace_term_matches_subleaves",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "spatial_connection_term_matches_subleaves",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "divergence_expr_matches_normalized_lhs",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "divergence_expr_simplifies_to_zero",
+          "ok": true,
+          "diagnostic": "0"
+        },
+        {
+          "check": "route_subleaf_refs::flrw_route_A_named_subleaves_expand_then_cancel",
+          "ok": true,
+          "diagnostic": "refs=['flrw.connection.gamma_0ii', 'flrw.connection.gamma_trace_0', 'flrw.divergence.expanded_nu0', 'flrw.einstein.G_contra_00', 'flrw.einstein.G_contra_ii']"
+        },
+        {
+          "check": "route_subleaf_refs::flrw_route_B_named_subleaves_factor_first",
+          "ok": true,
+          "diagnostic": "refs=['flrw.connection.gamma_0ii', 'flrw.connection.gamma_trace_0', 'flrw.divergence.expanded_nu0', 'flrw.einstein.G_contra_00', 'flrw.einstein.G_contra_ii']"
+        }
+      ]
+    }
+  ],
+  "ast_locator_report": {
+    "ast_locators_total": 14,
+    "ast_locators_checked_ok": 14,
+    "tensor_steps": 4,
+    "tensor_steps_with_ast_locators": 4,
+    "gates": {
+      "AP1": true,
+      "AP2": true,
+      "AP3": true,
+      "AP4": true,
+      "AP5": true,
+      "AP6": true,
+      "AP7": true
+    },
+    "issue_count": 0,
+    "warning_count": 0,
+    "issues": [],
+    "warnings": [],
+    "step_reports": [
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+        "step_id": "A1",
+        "subleaf_refs": [
+          "flrw.divergence.expanded_nu0"
+        ],
+        "ast_locator_count": 1
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+        "step_id": "A2",
+        "subleaf_refs": [
+          "flrw.connection.gamma_0ii",
+          "flrw.connection.gamma_trace_0",
+          "flrw.divergence.expanded_nu0",
+          "flrw.einstein.G_contra_00",
+          "flrw.einstein.G_contra_ii"
+        ],
+        "ast_locator_count": 6
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_B_named_subleaves_factor_first",
+        "step_id": "B1",
+        "subleaf_refs": [
+          "flrw.divergence.expanded_nu0"
+        ],
+        "ast_locator_count": 1
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_B_named_subleaves_factor_first",
+        "step_id": "B2",
+        "subleaf_refs": [
+          "flrw.connection.gamma_0ii",
+          "flrw.connection.gamma_trace_0",
+          "flrw.divergence.expanded_nu0",
+          "flrw.einstein.G_contra_00",
+          "flrw.einstein.G_contra_ii"
+        ],
+        "ast_locator_count": 6
+      }
+    ]
+  },
+  "typed_provenance_report": {
+    "typed_provenance_total": 14,
+    "typed_provenance_checked_ok": 14,
+    "tensor_steps": 4,
+    "tensor_steps_with_typed_provenance": 4,
+    "gates": {
+      "TP1": true,
+      "TP2": true,
+      "TP3": true,
+      "TP4": true,
+      "TP5": true,
+      "TP6": true,
+      "TP7": true,
+      "TP8": true,
+      "TP9": true
+    },
+    "issue_count": 0,
+    "warning_count": 0,
+    "issues": [],
+    "warnings": [],
+    "rows": [
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+        "step_id": "A1",
+        "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A1.occ01.full_divergence_scalar_export",
+        "subleaf_id": "flrw.divergence.expanded_nu0",
+        "payload_field": "divergence_expanded_expr",
+        "node_type": "assembled_tensor_scalar_expression",
+        "provenance_class": "covariant_divergence_assembly",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "type_hash": "0a83e676594599a7"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+        "step_id": "A2",
+        "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ01.full_divergence_scalar_export",
+        "subleaf_id": "flrw.divergence.expanded_nu0",
+        "payload_field": "divergence_expanded_expr",
+        "node_type": "assembled_tensor_scalar_expression",
+        "provenance_class": "covariant_divergence_assembly",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "type_hash": "6ac312c00aa4ede5"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+        "step_id": "A2",
+        "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ02.partial_time_derivative",
+        "subleaf_id": "flrw.divergence.expanded_nu0",
+        "payload_field": "partial_G00_expr",
+        "node_type": "calculus_scalar_export",
+        "provenance_class": "partial_derivative_component",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [],
+        "type_hash": "24593405bbedea0b"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+        "step_id": "A2",
+        "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ03.connection_trace_factor",
+        "subleaf_id": "flrw.connection.gamma_trace_0",
+        "payload_field": "gamma_trace_0_expr",
+        "node_type": "connection_scalar_export",
+        "provenance_class": "connection_component",
+        "coordinate_scope": [],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [],
+        "type_hash": "ecf2f3dd9154a25f"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+        "step_id": "A2",
+        "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ04.einstein_00_factor",
+        "subleaf_id": "flrw.einstein.G_contra_00",
+        "payload_field": "G_contra_00_expr",
+        "node_type": "einstein_tensor_scalar_export",
+        "provenance_class": "einstein_tensor_component",
+        "coordinate_scope": [],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [],
+        "type_hash": "3b20495e68ebb46b"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+        "step_id": "A2",
+        "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ05.spatial_connection_factor",
+        "subleaf_id": "flrw.connection.gamma_0ii",
+        "payload_field": "gamma_0ii_expr",
+        "node_type": "connection_scalar_export",
+        "provenance_class": "connection_component",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "type_hash": "d9b8d7a18dd5cf32"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_A_named_subleaves_expand_then_cancel",
+        "step_id": "A2",
+        "occurrence_id": "flrw_route_A_named_subleaves_expand_then_cancel.A2.occ06.spatial_einstein_factor",
+        "subleaf_id": "flrw.einstein.G_contra_ii",
+        "payload_field": "G_contra_ii_expr",
+        "node_type": "einstein_tensor_scalar_export",
+        "provenance_class": "einstein_tensor_component",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "type_hash": "ef58b66dd1f47b9b"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_B_named_subleaves_factor_first",
+        "step_id": "B1",
+        "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B1.occ01.full_divergence_scalar_export",
+        "subleaf_id": "flrw.divergence.expanded_nu0",
+        "payload_field": "divergence_expanded_expr",
+        "node_type": "assembled_tensor_scalar_expression",
+        "provenance_class": "covariant_divergence_assembly",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "type_hash": "f150ac70b11a5a9e"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_B_named_subleaves_factor_first",
+        "step_id": "B2",
+        "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ01.full_divergence_scalar_export",
+        "subleaf_id": "flrw.divergence.expanded_nu0",
+        "payload_field": "divergence_expanded_expr",
+        "node_type": "assembled_tensor_scalar_expression",
+        "provenance_class": "covariant_divergence_assembly",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "type_hash": "e20e7c1e0ef67a1b"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_B_named_subleaves_factor_first",
+        "step_id": "B2",
+        "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ02.partial_time_derivative",
+        "subleaf_id": "flrw.divergence.expanded_nu0",
+        "payload_field": "partial_G00_expr",
+        "node_type": "calculus_scalar_export",
+        "provenance_class": "partial_derivative_component",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [],
+        "type_hash": "0a37ba36aadb35c7"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_B_named_subleaves_factor_first",
+        "step_id": "B2",
+        "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ03.connection_trace_factor",
+        "subleaf_id": "flrw.connection.gamma_trace_0",
+        "payload_field": "gamma_trace_0_expr",
+        "node_type": "connection_scalar_export",
+        "provenance_class": "connection_component",
+        "coordinate_scope": [],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [],
+        "type_hash": "08edb0a516e9fffb"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_B_named_subleaves_factor_first",
+        "step_id": "B2",
+        "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ04.einstein_00_factor",
+        "subleaf_id": "flrw.einstein.G_contra_00",
+        "payload_field": "G_contra_00_expr",
+        "node_type": "einstein_tensor_scalar_export",
+        "provenance_class": "einstein_tensor_component",
+        "coordinate_scope": [],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [],
+        "type_hash": "8670fd95d68eaa4c"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_B_named_subleaves_factor_first",
+        "step_id": "B2",
+        "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ05.spatial_connection_factor",
+        "subleaf_id": "flrw.connection.gamma_0ii",
+        "payload_field": "gamma_0ii_expr",
+        "node_type": "connection_scalar_export",
+        "provenance_class": "connection_component",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "type_hash": "aa7789689dc53c5e"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "route_id": "flrw_route_B_named_subleaves_factor_first",
+        "step_id": "B2",
+        "occurrence_id": "flrw_route_B_named_subleaves_factor_first.B2.occ06.spatial_einstein_factor",
+        "subleaf_id": "flrw.einstein.G_contra_ii",
+        "payload_field": "G_contra_ii_expr",
+        "node_type": "einstein_tensor_scalar_export",
+        "provenance_class": "einstein_tensor_component",
+        "coordinate_scope": [
+          "t"
+        ],
+        "parameter_scope": [
+          "H"
+        ],
+        "domain_refs": [
+          "DOM.REAL_BRANCH"
+        ],
+        "type_hash": "194e341df18da634"
+      }
+    ]
+  },
+  "typed_dependency_flow_report": {
+    "dependency_edges_total": 10,
+    "dependency_edges_checked_ok": 10,
+    "cert_reports": [
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "dependency_edges_total": 10,
+        "dependency_edges_checked_ok": 10,
+        "gates": {
+          "DF1": true,
+          "DF2": true,
+          "DF3": true,
+          "DF4": true,
+          "DF5": true,
+          "DF6": true,
+          "DF7": true,
+          "DF8": true,
+          "DF9": true,
+          "DF10": true
+        },
+        "issue_count": 0,
+        "warning_count": 0,
+        "issues": [],
+        "warnings": [],
+        "rows": [
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e01.metric_to_gamma_trace",
+            "kind": "metric_to_connection",
+            "source": "flrw.metric.scale_factor",
+            "source_fields": [
+              "a_expr"
+            ],
+            "target": "flrw.connection.gamma_trace_0",
+            "target_fields": [
+              "a_dot_over_a_expr",
+              "gamma_trace_0_expr"
+            ],
+            "edge_hash": "e7d66841aa4a9d3c"
+          },
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e02.metric_to_gamma_0ii",
+            "kind": "metric_to_connection",
+            "source": "flrw.metric.scale_factor",
+            "source_fields": [
+              "a_expr",
+              "g_ii"
+            ],
+            "target": "flrw.connection.gamma_0ii",
+            "target_fields": [
+              "gamma_0ii_expr"
+            ],
+            "edge_hash": "1a37ae18bdb8e0e3"
+          },
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e03.metric_to_G00",
+            "kind": "metric_to_einstein_tensor",
+            "source": "flrw.metric.scale_factor",
+            "source_fields": [
+              "a_expr",
+              "g_contra_00"
+            ],
+            "target": "flrw.einstein.G_contra_00",
+            "target_fields": [
+              "G_contra_00_expr"
+            ],
+            "edge_hash": "a69c38c4e7d2b138"
+          },
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e04.metric_to_Gii",
+            "kind": "metric_to_einstein_tensor",
+            "source": "flrw.metric.scale_factor",
+            "source_fields": [
+              "a_expr",
+              "g_contra_ii"
+            ],
+            "target": "flrw.einstein.G_contra_ii",
+            "target_fields": [
+              "G_contra_ii_expr"
+            ],
+            "edge_hash": "4d6efe1d6f69e3a8"
+          },
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e05.G00_to_partial_term",
+            "kind": "einstein_to_divergence_derivative",
+            "source": "flrw.einstein.G_contra_00",
+            "source_fields": [
+              "G_contra_00_expr"
+            ],
+            "target": "flrw.divergence.expanded_nu0",
+            "target_fields": [
+              "partial_G00_expr"
+            ],
+            "edge_hash": "3c7e8b3d9c8b2645"
+          },
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e06.gamma_trace_to_trace_term",
+            "kind": "connection_to_divergence_assembly",
+            "source": "flrw.connection.gamma_trace_0",
+            "source_fields": [
+              "gamma_trace_0_expr"
+            ],
+            "target": "flrw.divergence.expanded_nu0",
+            "target_fields": [
+              "gamma_trace_term_expr"
+            ],
+            "edge_hash": "fa7b00f6fbd251e6"
+          },
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e07.G00_to_trace_term",
+            "kind": "einstein_to_divergence_assembly",
+            "source": "flrw.einstein.G_contra_00",
+            "source_fields": [
+              "G_contra_00_expr"
+            ],
+            "target": "flrw.divergence.expanded_nu0",
+            "target_fields": [
+              "gamma_trace_term_expr"
+            ],
+            "edge_hash": "49d2361546c8fd57"
+          },
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e08.gamma_0ii_to_spatial_term",
+            "kind": "connection_to_divergence_assembly",
+            "source": "flrw.connection.gamma_0ii",
+            "source_fields": [
+              "gamma_0ii_expr",
+              "spatial_multiplicity"
+            ],
+            "target": "flrw.divergence.expanded_nu0",
+            "target_fields": [
+              "spatial_connection_term_expr"
+            ],
+            "edge_hash": "b847e61cf497a59c"
+          },
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e09.Gii_to_spatial_term",
+            "kind": "einstein_to_divergence_assembly",
+            "source": "flrw.einstein.G_contra_ii",
+            "source_fields": [
+              "G_contra_ii_expr",
+              "spatial_multiplicity"
+            ],
+            "target": "flrw.divergence.expanded_nu0",
+            "target_fields": [
+              "spatial_connection_term_expr"
+            ],
+            "edge_hash": "3c9d9185aca7a6b2"
+          },
+          {
+            "claim_id": "zero.flrw.contracted_bianchi_divG0",
+            "edge_id": "flrw.tf.e10.term_fields_to_divergence_expr",
+            "kind": "intra_divergence_assembly",
+            "source": "flrw.divergence.expanded_nu0",
+            "source_fields": [
+              "partial_G00_expr",
+              "gamma_trace_term_expr",
+              "spatial_connection_term_expr"
+            ],
+            "target": "flrw.divergence.expanded_nu0",
+            "target_fields": [
+              "divergence_expanded_expr"
+            ],
+            "edge_hash": "3ddba68bf3050a33"
+          }
+        ],
+        "graph": {
+          "covered_pairs": [
+            [
+              "flrw.connection.gamma_0ii",
+              "flrw.divergence.expanded_nu0"
+            ],
+            [
+              "flrw.connection.gamma_trace_0",
+              "flrw.divergence.expanded_nu0"
+            ],
+            [
+              "flrw.einstein.G_contra_00",
+              "flrw.divergence.expanded_nu0"
+            ],
+            [
+              "flrw.einstein.G_contra_ii",
+              "flrw.divergence.expanded_nu0"
+            ],
+            [
+              "flrw.metric.scale_factor",
+              "flrw.connection.gamma_0ii"
+            ],
+            [
+              "flrw.metric.scale_factor",
+              "flrw.connection.gamma_trace_0"
+            ],
+            [
+              "flrw.metric.scale_factor",
+              "flrw.einstein.G_contra_00"
+            ],
+            [
+              "flrw.metric.scale_factor",
+              "flrw.einstein.G_contra_ii"
+            ]
+          ],
+          "declared_pairs": [
+            [
+              "flrw.connection.gamma_0ii",
+              "flrw.divergence.expanded_nu0"
+            ],
+            [
+              "flrw.connection.gamma_trace_0",
+              "flrw.divergence.expanded_nu0"
+            ],
+            [
+              "flrw.einstein.G_contra_00",
+              "flrw.divergence.expanded_nu0"
+            ],
+            [
+              "flrw.einstein.G_contra_ii",
+              "flrw.divergence.expanded_nu0"
+            ],
+            [
+              "flrw.metric.scale_factor",
+              "flrw.connection.gamma_0ii"
+            ],
+            [
+              "flrw.metric.scale_factor",
+              "flrw.connection.gamma_trace_0"
+            ],
+            [
+              "flrw.metric.scale_factor",
+              "flrw.einstein.G_contra_00"
+            ],
+            [
+              "flrw.metric.scale_factor",
+              "flrw.einstein.G_contra_ii"
+            ]
+          ],
+          "reachable_from_roots": [
+            "flrw.connection.gamma_0ii",
+            "flrw.connection.gamma_trace_0",
+            "flrw.divergence.expanded_nu0",
+            "flrw.einstein.G_contra_00",
+            "flrw.einstein.G_contra_ii",
+            "flrw.metric.scale_factor"
+          ]
+        }
+      }
+    ],
+    "gates": {
+      "DF1": true,
+      "DF2": true,
+      "DF3": true,
+      "DF4": true,
+      "DF5": true,
+      "DF6": true,
+      "DF7": true,
+      "DF8": true,
+      "DF9": true,
+      "DF10": true
+    },
+    "issue_count": 0,
+    "warning_count": 0,
+    "issues": [],
+    "warnings": [],
+    "rows": [
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e01.metric_to_gamma_trace",
+        "kind": "metric_to_connection",
+        "source": "flrw.metric.scale_factor",
+        "source_fields": [
+          "a_expr"
+        ],
+        "target": "flrw.connection.gamma_trace_0",
+        "target_fields": [
+          "a_dot_over_a_expr",
+          "gamma_trace_0_expr"
+        ],
+        "edge_hash": "e7d66841aa4a9d3c"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e02.metric_to_gamma_0ii",
+        "kind": "metric_to_connection",
+        "source": "flrw.metric.scale_factor",
+        "source_fields": [
+          "a_expr",
+          "g_ii"
+        ],
+        "target": "flrw.connection.gamma_0ii",
+        "target_fields": [
+          "gamma_0ii_expr"
+        ],
+        "edge_hash": "1a37ae18bdb8e0e3"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e03.metric_to_G00",
+        "kind": "metric_to_einstein_tensor",
+        "source": "flrw.metric.scale_factor",
+        "source_fields": [
+          "a_expr",
+          "g_contra_00"
+        ],
+        "target": "flrw.einstein.G_contra_00",
+        "target_fields": [
+          "G_contra_00_expr"
+        ],
+        "edge_hash": "a69c38c4e7d2b138"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e04.metric_to_Gii",
+        "kind": "metric_to_einstein_tensor",
+        "source": "flrw.metric.scale_factor",
+        "source_fields": [
+          "a_expr",
+          "g_contra_ii"
+        ],
+        "target": "flrw.einstein.G_contra_ii",
+        "target_fields": [
+          "G_contra_ii_expr"
+        ],
+        "edge_hash": "4d6efe1d6f69e3a8"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e05.G00_to_partial_term",
+        "kind": "einstein_to_divergence_derivative",
+        "source": "flrw.einstein.G_contra_00",
+        "source_fields": [
+          "G_contra_00_expr"
+        ],
+        "target": "flrw.divergence.expanded_nu0",
+        "target_fields": [
+          "partial_G00_expr"
+        ],
+        "edge_hash": "3c7e8b3d9c8b2645"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e06.gamma_trace_to_trace_term",
+        "kind": "connection_to_divergence_assembly",
+        "source": "flrw.connection.gamma_trace_0",
+        "source_fields": [
+          "gamma_trace_0_expr"
+        ],
+        "target": "flrw.divergence.expanded_nu0",
+        "target_fields": [
+          "gamma_trace_term_expr"
+        ],
+        "edge_hash": "fa7b00f6fbd251e6"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e07.G00_to_trace_term",
+        "kind": "einstein_to_divergence_assembly",
+        "source": "flrw.einstein.G_contra_00",
+        "source_fields": [
+          "G_contra_00_expr"
+        ],
+        "target": "flrw.divergence.expanded_nu0",
+        "target_fields": [
+          "gamma_trace_term_expr"
+        ],
+        "edge_hash": "49d2361546c8fd57"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e08.gamma_0ii_to_spatial_term",
+        "kind": "connection_to_divergence_assembly",
+        "source": "flrw.connection.gamma_0ii",
+        "source_fields": [
+          "gamma_0ii_expr",
+          "spatial_multiplicity"
+        ],
+        "target": "flrw.divergence.expanded_nu0",
+        "target_fields": [
+          "spatial_connection_term_expr"
+        ],
+        "edge_hash": "b847e61cf497a59c"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e09.Gii_to_spatial_term",
+        "kind": "einstein_to_divergence_assembly",
+        "source": "flrw.einstein.G_contra_ii",
+        "source_fields": [
+          "G_contra_ii_expr",
+          "spatial_multiplicity"
+        ],
+        "target": "flrw.divergence.expanded_nu0",
+        "target_fields": [
+          "spatial_connection_term_expr"
+        ],
+        "edge_hash": "3c9d9185aca7a6b2"
+      },
+      {
+        "claim_id": "zero.flrw.contracted_bianchi_divG0",
+        "edge_id": "flrw.tf.e10.term_fields_to_divergence_expr",
+        "kind": "intra_divergence_assembly",
+        "source": "flrw.divergence.expanded_nu0",
+        "source_fields": [
+          "partial_G00_expr",
+          "gamma_trace_term_expr",
+          "spatial_connection_term_expr"
+        ],
+        "target": "flrw.divergence.expanded_nu0",
+        "target_fields": [
+          "divergence_expanded_expr"
+        ],
+        "edge_hash": "3ddba68bf3050a33"
+      }
+    ]
+  }
+}

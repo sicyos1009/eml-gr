@@ -1,0 +1,20 @@
+$ C:\Users\sicyo\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe scripts/zero_replay_checker_v1_1_evidence_depth.py --package-root . --bundle evidence/examples/zero_bundle_v1_2.v1_2_external_handoff.json --out outputs/replay_report_v1_2_core_inherited_v1_1.json --md-out outputs/replay_report_v1_2_core_inherited_v1_1.md
+
+[stdout]
+{
+  "review_pass": true,
+  "evidence_counts": {
+    "external_ci_jobs": 5,
+    "proof_assistant_tools_found": 0,
+    "local_algebra_cases": 3,
+    "local_algebra_cases_passed": 3,
+    "emlgr_claims_seen": 4
+  },
+  "issue_count": 0,
+  "warning_count": 10
+}
+
+[stderr]
+
+[returncode]
+0

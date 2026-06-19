@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eml-gr-zero-certificate-typed-ast-provenance-extension-v0.8",
+  "title": "Zero certificate typed AST provenance extension v0.8",
+  "type": "object",
+  "description": "Content-level extension schema for AST-located tensor-scalar export typed provenance. This is intentionally a seed extension, not a full tensor theorem prover schema.",
+  "required": [
+    "typed_provenance"
+  ],
+  "properties": {
+    "typed_provenance": {
+      "type": "object",
+      "required": [
+        "profile",
+        "node_type",
+        "provenance_class",
+        "semantic_role",
+        "scalar_codomain",
+        "coordinate_scope",
+        "parameter_scope",
+        "payload_binding",
+        "source",
+        "target",
+        "provenance_edge",
+        "type_hash"
+      ],
+      "properties": {
+        "profile": {
+          "const": "zf_typed_ast_provenance_v1"
+        },
+        "node_type": {
+          "type": "string"
+        },
+        "provenance_class": {
+          "type": "string"
+        },
+        "semantic_role": {
+          "type": "string"
+        },
+        "scalar_codomain": {
+          "type": "string"
+        },
+        "coordinate_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "parameter_scope": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "domain_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "payload_binding": {
+          "type": "object"
+        },
+        "source": {
+          "type": "object"
+        },
+        "target": {
+          "type": "object"
+        },
+        "provenance_edge": {
+          "type": "object"
+        },
+        "type_hash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{16}$"
+        }
+      }
+    }
+  }
+}
