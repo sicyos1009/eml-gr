@@ -15,6 +15,6 @@ jobs:
       - name: Show Coq version
         run: docker run --rm coqorg/coq:8.18 coqc --version
       - name: Compile inherited Paper2 seed theorem
-        run: docker run --rm -v "${{ github.workspace }}:/work" -w /work coqorg/coq:8.18 coqc proof_assistant/coq/CoqZeroLeafMinimal_v2_3.v
+        run: docker run --rm --user 0:0 -v "${{ github.workspace }}:/work" -w /work coqorg/coq:8.18 coqc proof_assistant/coq/CoqZeroLeafMinimal_v2_3.v
       - name: Compile WP15a zero replay seed
-        run: docker run --rm -v "${{ github.workspace }}:/work" -w /work coqorg/coq:8.18 coqc proof_assistant/coq/WP15ZeroReplaySeed.v
+        run: docker run --rm --user 0:0 -v "${{ github.workspace }}:/work" -w /work coqorg/coq:8.18 coqc proof_assistant/coq/WP15ZeroReplaySeed.v
