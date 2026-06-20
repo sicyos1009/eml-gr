@@ -1,0 +1,22 @@
+name: WP15a Coq formal kernel seed
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'proof_assistant/coq/**'
+      - '.github/workflows/wp15a_coq_compile.yml'
+
+jobs:
+  coq-8-18:
+    runs-on: ubuntu-latest
+    container:
+      image: coqorg/coq:8.18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show Coq version
+        run: coqc --version
+      - name: Compile inherited Paper2 seed theorem
+        run: coqc proof_assistant/coq/CoqZeroLeafMinimal_v2_3.v
+      - name: Compile WP15a zero replay seed
+        run: coqc proof_assistant/coq/WP15ZeroReplaySeed.v
