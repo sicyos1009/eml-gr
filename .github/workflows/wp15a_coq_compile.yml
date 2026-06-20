@@ -10,13 +10,11 @@ on:
 jobs:
   coq-8-18:
     runs-on: ubuntu-latest
-    container:
-      image: coqorg/coq:8.18
     steps:
       - uses: actions/checkout@v4
       - name: Show Coq version
-        run: coqc --version
+        run: docker run --rm coqorg/coq:8.18 coqc --version
       - name: Compile inherited Paper2 seed theorem
-        run: coqc proof_assistant/coq/CoqZeroLeafMinimal_v2_3.v
+        run: docker run --rm -v "${{ github.workspace }}:/work" -w /work coqorg/coq:8.18 coqc proof_assistant/coq/CoqZeroLeafMinimal_v2_3.v
       - name: Compile WP15a zero replay seed
-        run: coqc proof_assistant/coq/WP15ZeroReplaySeed.v
+        run: docker run --rm -v "${{ github.workspace }}:/work" -w /work coqorg/coq:8.18 coqc proof_assistant/coq/WP15ZeroReplaySeed.v
