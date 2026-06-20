@@ -19,6 +19,12 @@ jobs:
       - name: Install Python dependencies
         shell: bash
         run: python -m pip install sympy
+      - name: Install Coq proof assistant
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y coq
+          coqc --version
       - name: Run Paper2 zero-forest CI payload
         shell: bash
         run: |
